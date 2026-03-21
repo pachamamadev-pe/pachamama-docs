@@ -1,5 +1,10 @@
 site_name: Documentación Pachamama
-theme: readthedocs
+
+theme:
+  name: material
+  palette:
+    primary: green
+    accent: light green
 
 nav:
   - Inicio: index.md
