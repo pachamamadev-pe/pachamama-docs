@@ -11,6 +11,9 @@ En este portal agrupamos toda la información arquitectónica, técnica y de ope
 ## Infraestructura y Cloud
 - [Plataforma Heroku (APIs Java)](./infrastructure/heroku.md)
 
+## Reglas de Negocio y Seguridad
+- [Roles y Permisos del Sistema (MVP)](./roles-permisos.md)
+
 ## Catálogo de Servicios (MVP / Pre-Producción)
 
 ### Frontend

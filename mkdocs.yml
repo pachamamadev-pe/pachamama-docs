@@ -11,6 +11,8 @@ nav:
   - Arquitectura MVP (Pre-Pro): MVP-ARCHITECTURE.md
   - Infraestructura y Cloud:
       - Plataforma Heroku: infrastructure/heroku.md
+  - Reglas de Negocio y Seguridad:
+      - Roles y Permisos: roles-permisos.md
   - Servicios:
       - Frontend:
         - Web Landing: services/pachamama-web-landing/README.md
