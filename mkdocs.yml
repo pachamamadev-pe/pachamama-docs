@@ -1,0 +1,8 @@
+site_name: Documentación Pachamama
+theme: readthedocs
+
+nav:
+  - Inicio: index.md
+  - Arquitectura MVP (Pre-Pro): MVP-ARCHITECTURE.md
+  - Servicios:
+      - Web Landing: services/pachamama-web-landing/README.md
