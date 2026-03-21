@@ -12,14 +12,24 @@ nav:
   - Infraestructura y Cloud:
       - Cuentas Heroku: infrastructure/heroku.md
       - Cuentas Vercel: infrastructure/vercel.md
+      - Plataforma Azure: infrastructure/azure.md
+      - BD Railway: infrastructure/railway.md
+      - BD MongoDB: infrastructure/mongodb.md
+      - Caché Redis: infrastructure/redis.md
+      - Firebase: infrastructure/firebase.md
+      - Comunicaciones y Meta: infrastructure/twilio.md
   - Reglas de Negocio y Seguridad:
       - Roles y Permisos: roles-permisos.md
   - Servicios:
       - Frontend:
         - Web Landing: services/pachamama-web-landing/README.md
         - Web Admin: services/pachamama-web-admin/README.md
+        - Mobile App: services/pachamama-mobile-android/README.md
       - Backend (Java):
         - API Admin: services/pachamama-api-admin-java/README.md
         - API Sync: services/pachamama-api-sync-java/README.md
         - API Notificaciones: services/pachamama-api-notifications-java/README.md
         - API Traceability: services/pachamama-api-trace-java/README.md
+      - Serverless (Azure):
+        - Func SAS: services/pachamama-func-sas-node/README.md
+        - Func Traceability: services/pachamama-func-trace-sync/README.md
