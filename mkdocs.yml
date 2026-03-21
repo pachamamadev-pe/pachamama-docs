@@ -1,4 +1,4 @@
-site_name: Documentación Pachamama
+﻿site_name: Documentación Pachamama
 
 theme:
   name: material
@@ -33,3 +33,9 @@ nav:
       - Serverless (Azure):
         - Func SAS: services/pachamama-func-sas-node/README.md
         - Func Traceability: services/pachamama-func-trace-sync/README.md
+markdown_extensions:
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format

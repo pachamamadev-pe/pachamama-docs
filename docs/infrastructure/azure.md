@@ -12,12 +12,46 @@ rg-pachamama
 
 ---
 
-## Recursos Configurados
+## Topología de Recursos
 
-### 1. Azure Blob Storage
-- **Nombre de Cuenta:** sapachamama001
-- **Región (Location):** eastus
-- **SKU:** Standard LRS
+```mermaid
+flowchart TD
+  subgraph RG ["☁️ Resource Group: rg-pachamama"]
+    direction TB
+    
+    subgraph Storage ["📁 Storage Account: sapachamama001"]
+        direction TB
+        C1(["📦 Container: admin-uploads"])
+        C2(["📦 Container: onboarding-uploads"])
+    end
+
+    subgraph ServiceBus ["🚌 Service Bus: pachamama-sync-batch"]
+        direction TB
+        Q1[" صف Queue: activities-sync-queue"]
+        
+        subgraph T1 ["📢 Topic: assigned-brigade"]
+            S1("🔔 Sub: send-notifications")
+        end
+        
+        subgraph T2 ["📢 Topic: traceability-events-dev"]
+            S2("🔔 Sub: landing-readmodel-sync-dev")
+        end
+    end
+
+    subgraph Functions ["⚡ Azure Functions (Serverless)"]
+        direction TB
+        F1["ƒ app: pachamama-sas-func"]
+        F2["ƒ app: pachamama-func-trace-sync-dev"]
+    end
+    
+    %% Relaciones visuales de pertenencia
+    Storage ~~~ ServiceBus
+    ServiceBus ~~~ Functions
+  end
+```
+
+---
+
 - **Uso:** Almacenamiento seguro de archivos. Todo el acceso directo se gobierna mediante URLs con tokens SAS.
 - **Contenedores:**
   - dmin-uploads: Archivos procesados por la web de administración e imágenes de actividades provenientes de la app de Android.
