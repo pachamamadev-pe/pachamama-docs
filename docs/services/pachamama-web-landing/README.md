@@ -7,7 +7,6 @@ Esta es la web de landing (promocional o informativa) alojada en la capa gratuit
 - **URL Pública:** [https://pachamama-web-landing-v1.vercel.app/](https://pachamama-web-landing-v1.vercel.app/)
 - **Cuenta (Correo Administrador):** `jecrido@gmail.com`
 - **Ajustes de Vercel (URL del Proyecto):** [Ver en Vercel](https://vercel.com/jecridosantos-projects/pachamama-web-landing-v1/settings)
-- **Project ID:** `prj_G4XD6Ksoxlha1mIPYgFurGdXqJew`
 
 ## Sistema de Control de Versiones (Repositorios)
 
