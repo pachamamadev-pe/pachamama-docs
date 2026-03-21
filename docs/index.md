@@ -1,4 +1,4 @@
-# Documentación de Pachamama
+﻿# Documentación de Pachamama
 
 Bienvenido a la documentación oficial del ecosistema de Pachamama.
 
@@ -9,7 +9,8 @@ En este portal agrupamos toda la información arquitectónica, técnica y de ope
 - [Arquitectura MVP (Pre-Producción)](./MVP-ARCHITECTURE.md)
 
 ## Infraestructura y Cloud
-- [Plataforma Heroku (APIs Java)](./infrastructure/heroku.md)
+- [Cuentas y Plataforma Heroku](./infrastructure/heroku.md)
+- [Cuentas y Plataforma Vercel](./infrastructure/vercel.md)
 
 ## Reglas de Negocio y Seguridad
 - [Roles y Permisos del Sistema (MVP)](./roles-permisos.md)

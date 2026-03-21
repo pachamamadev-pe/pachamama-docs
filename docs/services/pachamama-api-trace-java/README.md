@@ -1,27 +1,26 @@
-# Pachamama API Traceability (MVP / Pre-Producción)
+﻿# Pachamama API Traceability (MVP / Pre-Producción)
 
 Este microservicio provee la capa de lectura (Read-Model) enfocada en la trazabilidad de lotes y eventos para la Landing Page y tableros informativos. Está desarrollado en Java y desplegado en Heroku.
 
-## Enlaces y Cuentas
+## Características del Servicio
 
-- **Proveedor Cloud:** Heroku
-- **Cuenta (Desarrollo/Propietario):** `pachamamadev@gmail.com`
-
-## Stack Tecnológico
+### Stack Tecnológico
 
 - **Lenguaje:** Java 21
-- **Framework Base:** Quarkus `3.17.7`
-- **Capa Exposición REST:** `quarkus-rest-jackson`
-- **Capa Base de Datos:** MongoDB con Panache (`quarkus-mongodb-panache`)
+- **Framework Base:** Quarkus 3.17.7
+- **Capa Exposición REST:** quarkus-rest-jackson
+- **Capa Base de Datos:** MongoDB con Panache (quarkus-mongodb-panache)
 - **Gestión de dependencias:** Maven
 
-## Sistema de Control de Versiones
+## Integraciones del Servicio
 
-- **Repositorio:** `pachamama-api-trace-java`
+A nivel de arquitectura funciona bajo un modelo CQRS leyendo de una base no-relacional paralela:
+- **Base de Datos (MongoDB Atlas):** Lectura exclusiva de la colección pachamama_traceability_readmodel_dev. (Los datos aquí son inyectados previamente de forma reactiva por Service Bus y Funciones de Azure).
+- **Frontend Consumidores:** 
+  - La Landing Page (o clientes externos LANDING -- REST --> API4) consume esta API directamente para pintar resúmenes de impacto y tracking de los lotes.
 
-## Despliegue e Infraestructura (CI/CD)
+## Despliegue / Repositorio
 
-El despliegue de esta aplicación está completamente automatizado a través de workflows con **GitHub Actions**. Al realizarse un cambio sobre la rama `main`, se activa el pipeline que construye y despliega la nueva versión directamente en la app de Heroku.
-
-Esta API expone consultas exclusivas de solo lectura (CQRS) sobre el seguimiento de recursos.
-- Base de datos NoSQL: Consume lectura directamente desde la colección `pachamama_traceability_readmodel_dev` en MongoDB, la cual ha sido previamente populada de forma reactiva por la función Azure respectiva.
+- **Repositorio:** pachamama-api-trace-java
+- **Alojamiento:** Heroku (App: pachamama-api-trace-java)
+- **CI/CD:** El despliegue de esta aplicación está completamente automatizado a través de workflows con **GitHub Actions**. Al realizarse un cambio sobre la rama main, se activa el pipeline.

@@ -10,7 +10,8 @@ nav:
   - Inicio: index.md
   - Arquitectura MVP (Pre-Pro): MVP-ARCHITECTURE.md
   - Infraestructura y Cloud:
-      - Plataforma Heroku: infrastructure/heroku.md
+      - Cuentas Heroku: infrastructure/heroku.md
+      - Cuentas Vercel: infrastructure/vercel.md
   - Reglas de Negocio y Seguridad:
       - Roles y Permisos: roles-permisos.md
   - Servicios:

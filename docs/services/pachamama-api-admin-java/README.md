@@ -1,31 +1,30 @@
-# Pachamama API Admin (MVP / Pre-Producción)
+﻿# Pachamama API Admin (MVP / Pre-Producción)
 
 Este es el backend principal de la plataforma, encargado de la gestión operativa (comunidades, recolectores, brigadas, proyectos, etc.). Está desarrollado en Java (Spring Boot) y se encuentra alojado en Heroku. Esta configuración corresponde al entorno de pre-producción (MVP).
 
-## Enlaces y Cuentas
+## Características del Servicio
 
-- **Proveedor Cloud:** Heroku
-- **Cuenta (Desarrollo/Propietario):** `pachamamadev@gmail.com`
-
-## Stack Tecnológico
+### Stack Tecnológico
 
 - **Lenguaje:** Java 21
-- **Framework Base:** Spring Boot `3.3.1`
+- **Framework Base:** Spring Boot 3.3.1
 - **Compilación/Gestión de dependencias:** Maven
-- **Arquitectura:** Monolito / Multi-módulo (`app`, `common`, `security`, `persistence`, módulos por dominio como `brigades`, `collectors`, etc.)
+- **Arquitectura:** Monolito / Multi-módulo (pp, common, security, persistence, módulos por dominio como rigades, collectors, etc.)
 
-## Sistema de Control de Versiones
+## Integraciones del Servicio
 
-- **Repositorio:** `pachamama-api-admin-java`
+Este servicio principal actúa como orquestador y se integra a nivel de negocio y técnico con:
+- **Base de Datos (Railway):** Persistencia operativa leyendo/escribiendo hacia la base principal PostgreSQL (+ PostGIS).
+- **Caché (Indefinido/Heroku Addon):** Utiliza Redis para cacheo de respuestas (DBR).
+- **Autenticación (Firebase):** Validación de los tokens emitidos hacia el cliente móvil o web.
+- **Mensajería Interna (Azure Service Bus):** Publica eventos/mensajes asíncronos en los tópicos (ssigned-brigade y 	raceability-events-dev).
+- **Proveedores Externos:**
+  - **Twilio**: Servicio de Send/Verify OTP para autenticación.
+  - **API Perú Devs**: Consultas externas de tipo DNI/RUC.
+  - **Azure Storage:** Carga e indexación de archivos al Blob (dmin-uploads).
 
-## Despliegue (CI/CD)
+## Despliegue / Repositorio
 
-El despliegue de esta aplicación está completamente automatizado a través de workflows con **GitHub Actions**. Al realizarse un cambio sobre la rama `main`, se activa el pipeline que construye y despliega la nueva versión directamente en la app de Heroku.
-
-La aplicación utiliza la infraestructura de contenedores / buildpacks de Heroku.
-Internamente, la API se conecta a:
-- Base de datos relacional (PostgreSQL en Railway).
-- Caché (Redis).
-- Servicios de autenticación y mensajería (Firebase, Twilio, etc.).
-
-*(Esta sección se ampliará conforme se documenten las variables de entorno y los add-ons específicos instalados en Heroku).*
+- **Repositorio:** pachamama-api-admin-java
+- **Alojamiento:** Heroku (App: pachamama-api-admin-java)
+- **CI/CD:** Completamente automatizado usando **GitHub Actions**. Compila y despliega en cada push/merge a la rama main hacia el Dyno usando los credenciales en secret de la cuenta dueña.

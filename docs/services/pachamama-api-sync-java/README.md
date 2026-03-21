@@ -1,29 +1,26 @@
-# Pachamama API Sync (MVP / Pre-Producción)
+﻿# Pachamama API Sync (MVP / Pre-Producción)
 
 Este microservicio se encarga de gestionar la sincronización asíncrona (offline-first) desde los dispositivos móviles (App). Está desarrollado en Java y desplegado en Heroku.
 
-## Enlaces y Cuentas
+## Características del Servicio
 
-- **Proveedor Cloud:** Heroku
-- **Cuenta (Desarrollo/Propietario):** `pachamamadev@gmail.com`
-
-## Stack Tecnológico
+### Stack Tecnológico
 
 - **Lenguaje:** Java 21 
-- **Framework Base:** Spring Boot `3.5.10-SNAPSHOT`
-- **Mensajería:** Spring Cloud Azure `6.1.0` (para Azure Service Bus)
+- **Framework Base:** Spring Boot 3.5.10-SNAPSHOT
+- **Mensajería:** Spring Cloud Azure 6.1.0 (para Azure Service Bus)
 - **Gestión de dependencias:** Maven
-- **Arquitectura:** Arquitectura Hexagonal / Puertos y Adaptadores (`adapter`, `application`, `domain`)
+- **Arquitectura:** Arquitectura Hexagonal / Puertos y Adaptadores (dapter, pplication, domain)
 
-## Sistema de Control de Versiones
+## Integraciones del Servicio
 
-- **Repositorio:** `pachamama-api-sync-java`
+A nivel técnico y de negocio, este servicio actúa como una capa receptora de eventos que se comunica con:
+- **Colas Azure (Service Bus):** Realiza operaciones de Productor/Consumidor sobre la cola ctivities-sync-queue.
+- **Base de Datos (Railway):** Persistencia en batch o asíncrona hacia la base PostgreSQL, validando y volcando el listado encolado.
+- **Frontend App:** Expone endpoints REST (APP -- REST --> API2) que recibe la data de las sincronizaciones enviadas por dispositivos móviles que recobraron la conectividad.
 
-## Despliegue e Infraestructura (CI/CD)
+## Despliegue / Repositorio
 
-El despliegue de esta aplicación está completamente automatizado a través de workflows con **GitHub Actions**. Al realizarse un cambio sobre la rama `main`, se activa el pipeline que construye y despliega la nueva versión directamente en la app de Heroku.
-
-El servicio expone endpoints REST consumidos por la App Móvil para encolar actividades en modo offline.
-Internamente, la API interactúa con:
-- Colas de mensajería (Service Bus en Azure - `activities-sync-queue`).
-- Persistencia asíncrona hacia la base de datos principal PostgreSQL.
+- **Repositorio:** pachamama-api-sync-java
+- **Alojamiento:** Heroku (App: pachamama-api-sync-java)
+- **CI/CD:** Completamente automatizado a través de workflows con **GitHub Actions**. Al realizarse un cambio sobre la rama main, se activa el pipeline que construye y despliega la nueva versión directamente.
