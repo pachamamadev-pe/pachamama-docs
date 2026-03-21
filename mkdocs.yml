@@ -11,3 +11,4 @@ nav:
   - Arquitectura MVP (Pre-Pro): MVP-ARCHITECTURE.md
   - Servicios:
       - Web Landing: services/pachamama-web-landing/README.md
+      - Web Admin: services/pachamama-web-admin/README.md

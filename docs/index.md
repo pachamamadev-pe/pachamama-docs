@@ -11,3 +11,4 @@ En este portal agrupamos toda la información arquitectónica, técnica y de ope
 ## Catálogo de Servicios (MVP / Pre-Producción)
 
 - [Pachamama Web Landing Page](./services/pachamama-web-landing/README.md)
+- [Pachamama Web Admin](./services/pachamama-web-admin/README.md)

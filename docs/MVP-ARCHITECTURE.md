@@ -131,7 +131,7 @@ A continuación se detallan las cuentas, instancias y características de cada r
 ### Frontend
 | Componente | Proveedor / Plataforma | Repositorio / Proyecto | Características | Cuenta / URL |
 |---|---|---|---|---|
-| Admin Web | Vercel | `pachamama-web-admin` | Panel de administración | *Pendiente* |
+| Admin Web | Vercel | `pachamama-web-admin` | Panel de administración. [Ver docs](./services/pachamama-web-admin/README.md) | ricardoalvaradoaponte@gmail.com <br> [URL Pública](https://web-admin-pachamama.vercel.app/) |
 | Landing Page | Vercel | `pachamama-web-landing-v1` | Landing Page. [Ver docs](./services/pachamama-web-landing/README.md) | jecrido@gmail.com <br> [URL Pública](https://pachamama-web-landing-v1.vercel.app/) |
 | Mobile App | N/A (Android) | `pachamama-mobile-android` | App Móvil para usuarios | *Pendiente* |
 
