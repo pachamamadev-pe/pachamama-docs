@@ -9,6 +9,14 @@ theme:
 nav:
   - Inicio: index.md
   - Arquitectura MVP (Pre-Pro): MVP-ARCHITECTURE.md
+  - Infraestructura y Cloud:
+      - Plataforma Heroku: infrastructure/heroku.md
   - Servicios:
-      - Web Landing: services/pachamama-web-landing/README.md
-      - Web Admin: services/pachamama-web-admin/README.md
+      - Frontend:
+        - Web Landing: services/pachamama-web-landing/README.md
+        - Web Admin: services/pachamama-web-admin/README.md
+      - Backend (Java):
+        - API Admin: services/pachamama-api-admin-java/README.md
+        - API Sync: services/pachamama-api-sync-java/README.md
+        - API Notificaciones: services/pachamama-api-notifications-java/README.md
+        - API Traceability: services/pachamama-api-trace-java/README.md

@@ -138,10 +138,10 @@ A continuación se detallan las cuentas, instancias y características de cada r
 ### Backend / APIs
 | Componente | Proveedor / Plataforma | Repositorio / Proyecto | Características | Cuenta / Instancia |
 |---|---|---|---|---|
-| API Admin | Heroku | `pachamama-api-admin-java` | API principal, gestión operativa | *Pendiente* |
-| API Sync | Heroku | `pachamama-api-sync-java` | API para sincronización offline | *Pendiente* |
-| API Notifications | Heroku | `pachamama-api-notifications-java`| Notificaciones | *Pendiente* |
-| API Traceability | Heroku | `pachamama-api-trace-java` | Trazabilidad | *Pendiente* |
+| API Admin | Heroku | `pachamama-api-admin-java` | API principal. [Ver docs](./services/pachamama-api-admin-java/README.md) | pachamamadev@gmail.com |
+| API Sync | Heroku | `pachamama-api-sync-java` | Backend sincronización. [Ver docs](./services/pachamama-api-sync-java/README.md) | pachamamadev@gmail.com |
+| API Notifications | Heroku | `pachamama-api-notifications-java`| Notificaciones. [Ver docs](./services/pachamama-api-notifications-java/README.md) | pachamamadev@gmail.com (`pachamama-api-notif-java`) |
+| API Traceability | Heroku | `pachamama-api-trace-java` | Trazabilidad. [Ver docs](./services/pachamama-api-trace-java/README.md) | pachamamadev@gmail.com |
 
 ### Servicios de Cloud (Azure)
 | Componente | Tipo de Recurso | Nombre / Instancia | Características | Cuenta |
