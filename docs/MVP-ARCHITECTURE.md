@@ -133,7 +133,7 @@ A continuación se detallan las cuentas, instancias y características de cada r
 |---|---|---|---|---|
 | Admin Web | Vercel | `pachamama-web-admin` | Panel de administración. [Ver docs](./services/pachamama-web-admin/README.md) | ricardoalvaradoaponte@gmail.com <br> [URL Pública](https://web-admin-pachamama.vercel.app/) |
 | Landing Page | Vercel | `pachamama-web-landing-v1` | Landing Page. [Ver docs](./services/pachamama-web-landing/README.md) | jecrido@gmail.com <br> [URL Pública](https://pachamama-web-landing-v1.vercel.app/) |
-| Mobile App | N/A (Android) | `pachamama-mobile-android` | App Móvil para usuarios | *Pendiente* |
+| Mobile App | N/A (Android) | `pachamama-mobile-android` | App Móvil para usuarios | Repositorio en GitHub |
 
 ### Backend / APIs
 | Componente | Proveedor / Plataforma | Repositorio / Proyecto | Características | Cuenta / Instancia |
@@ -146,18 +146,18 @@ A continuación se detallan las cuentas, instancias y características de cada r
 ### Servicios de Cloud (Azure)
 | Componente | Tipo de Recurso | Nombre / Instancia | Características | Cuenta |
 |---|---|---|---|---|
-| Func SAS | Azure Functions | `pachamama-func-sas-node` | Generación de Tokens SAS | *Pendiente* |
-| Func Trace Sync | Azure Functions | `pachamama-func-trace-sync` | Sincronización ReadModel | *Pendiente* |
-| Storage | Azure Blob Storage | `sapachamama001` | Almacenamiento de archivos | *Pendiente* |
-| Service Bus | Azure Service Bus | `pachamama-sync-batch` | Mensajería asíncrona | *Pendiente* |
-| Colas/Tópicos | Azure Service Bus | `activities-sync-queue`, `assigned-brigade`, `traceability-events-dev` | Pub/Sub | *Pendiente* |
+| Func SAS | Azure Functions | `pachamama-func-sas-node` | Generación de Tokens SAS. [Ver docs](./infrastructure/azure.md) | codeoncube (jecridosantos@outlook.com) |
+| Func Trace Sync | Azure Functions | `pachamama-func-trace-sync` | Sincronización ReadModel. [Ver docs](./infrastructure/azure.md) | codeoncube (jecridosantos@outlook.com) |
+| Storage | Azure Blob Storage | `sapachamama001` | Almacenamiento de archivos. [Ver docs](./infrastructure/azure.md) | codeoncube (jecridosantos@outlook.com) |
+| Service Bus | Azure Service Bus | `pachamama-sync-batch` | Mensajería asíncrona. [Ver docs](./infrastructure/azure.md) | codeoncube (jecridosantos@outlook.com) |
+| Colas/Tópicos | Azure Service Bus | `activities-sync-queue`, `assigned-brigade`, `traceability-events-dev` | Pub/Sub. [Ver docs](./infrastructure/azure.md) | codeoncube (jecridosantos@outlook.com) |
 
 ### Bases de Datos & Caché
 | Componente | Proveedor / Plataforma | Nombre / Tecnología | Características | Cuenta / Instancia |
 |---|---|---|---|---|
 | Base de Datos Relacional | Railway | PostgreSQL 16 + PostGIS | Motor central operativo. [Ver docs](./infrastructure/railway.md) | pachamamadev@gmail.com |
 | Caché | Redis Labs (Azure East US) | Redis v8.2 | Caché geoespacial y OTP. [Ver docs](./infrastructure/redis.md) | pachamamadev@gmail.com |
-| Base de Datos NoSQL | MongoDB Atlas | MongoDB | Colecciones `pachamama_notifications`, `pachamama_traceability_readmodel_dev` | *Pendiente* |
+| Base de Datos NoSQL | MongoDB Atlas | MongoDB | Colecciones `pachamama_notifications`, `pachamama_traceability_readmodel_dev`. [Ver docs](./infrastructure/mongodb.md) | pachamamadev@gmail.com |
 
 ### Identidad & Mensajería Externa
 | Componente | Proveedor / Plataforma | Nombre | Características | Cuenta / Integración |
@@ -165,4 +165,5 @@ A continuación se detallan las cuentas, instancias y características de cada r
 | Auth | Firebase | Firebase Authentication | Login (Correo/Clave). [Ver docs](./infrastructure/firebase.md) | pachamamadev@gmail.com (pachamama-mvp) |
 | Mensajería Push | Firebase | FCM v1 | Delivery Push Android. [Ver docs](./infrastructure/firebase.md) | pachamamadev@gmail.com (pachamama-mvp) |
 | Verificación OTP | Twilio | Verify OTP y Meta Business | OTP por WhatsApp (Priorizado). [Ver docs](./infrastructure/twilio.md) | pachamamadev@gmail.com |
-| Datos RUC/DNI | API Perú Devs | `api.perudevs.com` | Consultas de APIs peruanas | *Pendiente* |
+| Datos RUC/DNI | API Perú Devs | `api.perudevs.com` | Consultas de APIs peruanas | Por definir (TBD) |
+
