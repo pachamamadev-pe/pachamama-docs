@@ -54,18 +54,18 @@ flowchart TD
 
 - **Uso:** Almacenamiento seguro de archivos. Todo el acceso directo se gobierna mediante URLs con tokens SAS.
 - **Contenedores:**
-  - dmin-uploads: Archivos procesados por la web de administración e imágenes de actividades provenientes de la app de Android.
+  - admin-uploads: Archivos procesados por la web de administración e imágenes de actividades provenientes de la app de Android.
   - onboarding-uploads: Fotos y capturas exclusivas del proceso de onboarding desde el app de Android.
 
 ### 2. Azure Service Bus (Mensajería)
 - **Namespace:** pachamama-sync-batch
-- **Región (Location):** razilsouth
+- **Región (Location):** brazilsouth
 - **SKU:** Standard
 - **Uso:** Comunicación asíncrona, patrón publicador-suscriptor (Pub/Sub) y encolamiento de trabajos para consistencia eventual.
 - **Colas (Queues):**
-  - ctivities-sync-queue: Usada por la API Sync para encolar el flujo de actividades hechas offline por recolectores en campo.
+  - activities-sync-queue: Usada por la API Sync para encolar el flujo de actividades hechas offline por recolectores en campo.
 - **Tópicos (Topics) y Suscripciones:**
-  - ssigned-brigade
+  - assigned-brigade
     - **Suscripción:** send-notifications (Integrado típicamente para disparar alertas y push).
   - 	raceability-events-dev
     - **Suscripción:** landing-readmodel-sync-dev (Consumida por la function de trazabilidad de CQRS).
