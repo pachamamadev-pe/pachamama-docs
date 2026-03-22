@@ -20,6 +20,11 @@ nav:
       - Comunicaciones y Meta: infrastructure/twilio.md
   - Reglas de Negocio y Seguridad:
       - Roles y Permisos: roles-permisos.md
+  - Flujos Arquitectónicos:
+      - Sincronización Offline Android: flujos/sincronizacion-offline.md
+      - Trazabilidad y CQRS: flujos/trazabilidad-cqrs.md
+      - Carga de Archivos (SAS): flujos/gestion-archivos-sas.md
+      - Notificaciones Push: flujos/notificaciones-push.md
   - Servicios:
       - Frontend:
         - Web Landing: services/pachamama-web-landing/README.md
