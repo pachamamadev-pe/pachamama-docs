@@ -9,7 +9,7 @@ A continuación el registro de correos vinculados para administrar los paneles d
 | Cuenta (Correo) | Proyecto(s) a cargo |
 |---|---|
 | jecrido@gmail.com | Landing Page (pachamama-web-landing-v1) |
-| ricardoalvaradoaponte@gmail.com\ | Admin Web (web-admin-pachamama) |
+| ricardoalvaradoaponte@gmail.com | Admin Web (web-admin-pachamama) |
 
 ## Integraciones y Configuraciones Cloud
 

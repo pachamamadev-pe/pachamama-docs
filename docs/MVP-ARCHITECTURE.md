@@ -1,4 +1,4 @@
-# Arquitectura MVP Pachamama (Pre-Producción)
+﻿# Arquitectura MVP Pachamama (Pre-Producción)
 
 Esta es la documentación técnica y arquitectónica del estado actual del proyecto MVP, operando como un ambiente de **Pre-Producción**. 
 
@@ -155,14 +155,14 @@ A continuación se detallan las cuentas, instancias y características de cada r
 ### Bases de Datos & Caché
 | Componente | Proveedor / Plataforma | Nombre / Tecnología | Características | Cuenta / Instancia |
 |---|---|---|---|---|
-| Base de Datos Relacional | Railway | PostgreSQL + PostGIS | Datos transaccionales y geográficos | *Pendiente* |
-| Caché | *Por definir* | Redis | Caché de la aplicación | *Pendiente* |
+| Base de Datos Relacional | Railway | PostgreSQL 16 + PostGIS | Motor central operativo. [Ver docs](./infrastructure/railway.md) | pachamamadev@gmail.com |
+| Caché | Redis Labs (Azure East US) | Redis v8.2 | Caché geoespacial y OTP. [Ver docs](./infrastructure/redis.md) | pachamamadev@gmail.com |
 | Base de Datos NoSQL | MongoDB Atlas | MongoDB | Colecciones `pachamama_notifications`, `pachamama_traceability_readmodel_dev` | *Pendiente* |
 
 ### Identidad & Mensajería Externa
 | Componente | Proveedor / Plataforma | Nombre | Características | Cuenta / Integración |
 |---|---|---|---|---|
-| Auth | Firebase | Firebase Authentication | Login y Manejo de usuarios | *Pendiente* |
-| Mensajería Push | Firebase | Firebase Cloud Messaging (FCM) | Notificaciones Push | *Pendiente* |
-| Verificación OTP | Twilio | Verify OTP | Verificación de teléfono/SMS | *Pendiente* |
+| Auth | Firebase | Firebase Authentication | Login (Correo/Clave). [Ver docs](./infrastructure/firebase.md) | pachamamadev@gmail.com (pachamama-mvp) |
+| Mensajería Push | Firebase | FCM v1 | Delivery Push Android. [Ver docs](./infrastructure/firebase.md) | pachamamadev@gmail.com (pachamama-mvp) |
+| Verificación OTP | Twilio | Verify OTP y Meta Business | OTP por WhatsApp (Priorizado). [Ver docs](./infrastructure/twilio.md) | pachamamadev@gmail.com |
 | Datos RUC/DNI | API Perú Devs | `api.perudevs.com` | Consultas de APIs peruanas | *Pendiente* |

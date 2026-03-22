@@ -9,7 +9,7 @@ Este es el backend principal de la plataforma, encargado de la gestión operativ
 - **Lenguaje:** Java 21
 - **Framework Base:** Spring Boot 3.3.1
 - **Compilación/Gestión de dependencias:** Maven
-- **Arquitectura:** Monolito / Multi-módulo (pp, common, security, persistence, módulos por dominio como rigades, collectors, etc.)
+- **Arquitectura:** Monolito / Multi-módulo (app, common, security, persistence, módulos por dominio como brigades, collectors, etc.)
 
 ## Integraciones del Servicio
 
@@ -17,11 +17,11 @@ Este servicio principal actúa como orquestador y se integra a nivel de negocio 
 - **Base de Datos (Railway):** Persistencia operativa leyendo/escribiendo hacia la base principal PostgreSQL (+ PostGIS).
 - **Caché (Indefinido/Heroku Addon):** Utiliza Redis para cacheo de respuestas (DBR).
 - **Autenticación (Firebase):** Validación de los tokens emitidos hacia el cliente móvil o web.
-- **Mensajería Interna (Azure Service Bus):** Publica eventos/mensajes asíncronos en los tópicos (ssigned-brigade y 	raceability-events-dev).
+- **Mensajería Interna (Azure Service Bus):** Publica eventos/mensajes asíncronos en los tópicos (assigned-brigade y 	raceability-events-dev).
 - **Proveedores Externos:**
   - **Twilio**: Servicio de Send/Verify OTP para autenticación.
   - **API Perú Devs**: Consultas externas de tipo DNI/RUC.
-  - **Azure Storage:** Carga e indexación de archivos al Blob (dmin-uploads).
+  - **Azure Storage:** Carga e indexación de archivos al Blob (admin-uploads).
 
 ## Despliegue / Repositorio
 
