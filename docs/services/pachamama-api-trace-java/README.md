@@ -24,3 +24,20 @@ A nivel de arquitectura funciona bajo un modelo CQRS leyendo de una base no-rela
 - **Repositorio:** pachamama-api-trace-java
 - **Alojamiento:** Heroku (App: pachamama-api-trace-java)
 - **CI/CD:** El despliegue de esta aplicación está completamente automatizado a través de workflows con **GitHub Actions**. Al realizarse un cambio sobre la rama main, se activa el pipeline.
+
+## Configuración y Variables de Entorno
+
+Este servicio basado en Quarkus orienta su carga al modelo de lectura geoespacial / de trazabilidad. Requiere los siguientes valores:
+
+**General**
+- PORT o QUARKUS_HTTP_PORT: Puerto HTTP del servidor (8089).
+
+**Base de Datos NoSQL (MongoDB Atlas)**
+- MONGODB_URI: URi de conexión (Protocolo SRV) con parámetros de retry y autenticación.
+- MONGODB_DATABASE: Nombre de la base de datos (ej. pachamama_traceability_readmodel_dev).
+
+**Seguridad Genérica y JWT (MicroProfile OpenID)**
+- JWT_DURATION_SECONDS: Expiración de tokens delegados.
+- JWT_ISSUER: Emisor (https://pachamama.app).
+- JWT_PRIVATE_KEY y JWT_PUBLIC_KEY: Par de llaves para firma y validación de tokens de MicroProfile JWT.
+- BASIC_AUTH_USERNAME / BASIC_AUTH_PASSWORD: Credenciales básicas usadas por clientes o admins directos.

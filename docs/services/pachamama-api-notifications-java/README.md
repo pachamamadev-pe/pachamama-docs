@@ -25,3 +25,27 @@ Este servicio se suscribe a los eventos lógicos del negocio para emitir notific
 - **Repositorio:** pachamama-api-notifications-java
 - **Alojamiento:** Heroku (App: pachamama-api-notif-java)
 - **CI/CD:** El despliegue de esta aplicación está completamente automatizado a través de workflows con **GitHub Actions**. Al realizarse un cambio sobre la rama main, se activa el pipeline.
+
+## Configuración y Variables de Entorno
+
+Para levantar este microservicio de envío de notificaciones mediante eventos u orquestación, es necesario configurar:
+
+**General**
+- SPRING_PROFILES_ACTIVE: Perfil activo (ej. local, dev).
+- PORT o SERVER_PORT: Puerto expuesto por el aplicativo.
+
+**Base de Datos (MongoDB Atlas)**
+- MONGODB_URI: Cadena de conexión de Mongo (incluye auth y cluster).
+- MONGODB_DATABASE: Nombre de la DB (ej. pachamama_notifications).
+
+**Mensajería Push (Firebase Cloud Messaging)**
+- FIREBASE_PROJECT_ID: ID del proyecto (ej. pachamama-mvp).
+- FIREBASE_CREDENTIALS_JSON_FILE: Archivo JSON de Service Account (o cargado mediante variables base en Base64).
+- FIREBASE_CLIENT_EMAIL: Email del service account.
+- FIREBASE_PRIVATE_KEY: Llave privada RSA.
+
+**Azure Service Bus (Suscripción a Tópicos)**
+- AZURE_SERVICEBUS_ENABLED: Habilitación de la escucha (listeners).
+- AZURE_SERVICEBUS_CONNECTION_STRING: Cadena de conexión al SB.
+- AZURE_SERVICEBUS_TOPIC_NAME: Nombre del tópico a escuchar (ej. ssigned-brigade).
+- AZURE_SERVICEBUS_SUBSCRIPTION_NAME: Nombre de la suscripción (ej. send-notifications).
