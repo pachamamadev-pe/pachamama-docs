@@ -39,6 +39,13 @@ nav:
       - Serverless (Azure):
         - Func SAS: services/pachamama-func-sas-node/README.md
         - Func Traceability: services/pachamama-func-trace-sync/README.md
+  - Gestión de Cambios:
+      - Sincronización y KPIs:
+        - Resumen Integral: gestion-cambios/observacion-kpi-sincronizacion/index.md
+        - Mobile Android: gestion-cambios/observacion-kpi-sincronizacion/pachamama-mobile-android.md
+        - API Sync: gestion-cambios/observacion-kpi-sincronizacion/pachamama-api-sync-java.md
+        - API Admin: gestion-cambios/observacion-kpi-sincronizacion/pachamama-api-admin-java.md
+        - Admin Web: gestion-cambios/observacion-kpi-sincronizacion/pachamama-admin-web.md
 markdown_extensions:
   - pymdownx.superfences:
       custom_fences:
