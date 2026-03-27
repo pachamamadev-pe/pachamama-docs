@@ -46,6 +46,12 @@ nav:
         - API Sync: gestion-cambios/observacion-kpi-sincronizacion/pachamama-api-sync-java.md
         - API Admin: gestion-cambios/observacion-kpi-sincronizacion/pachamama-api-admin-java.md
         - Admin Web: gestion-cambios/observacion-kpi-sincronizacion/pachamama-admin-web.md
+      - Trazabilidad de Versión de App:
+        - Resumen Integral: gestion-cambios/trazabilidad-app-version/index.md
+        - Mobile Android: gestion-cambios/trazabilidad-app-version/pachamama-mobile-android.md
+        - API Sync: gestion-cambios/trazabilidad-app-version/pachamama-api-sync-java.md
+        - API Admin: gestion-cambios/trazabilidad-app-version/pachamama-api-admin-java.md
+        - Admin Web: gestion-cambios/trazabilidad-app-version/pachamama-admin-web.md
 markdown_extensions:
   - pymdownx.superfences:
       custom_fences:
