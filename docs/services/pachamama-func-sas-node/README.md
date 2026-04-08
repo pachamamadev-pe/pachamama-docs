@@ -22,3 +22,13 @@ Su objetivo es proveer seguridad de acceso al almacenamiento sin exponer la cade
 - **Repositorio:** `pachamama-func-sas-node`
 - **Alojamiento:** Function App en la suscripción de Azure.
 - **CI/CD:** [Pendiente revisar el pipeline o GitHub action utilizado para el empaquetado y subida a la Function].
+
+## Configuración CORS
+
+La Function App debe tener configurados los siguientes orígenes permitidos en la sección **CORS** del portal de Azure (aplica tanto a la instancia actual `pachamama-sas-func` como a la futura `func-pachamama-sas-prd`):
+
+| Origen Permitido | Entorno |
+|---|---|
+| `https://app.pachamama.eco` | Producción |
+| `https://web-admin-pachamama.vercel.app` | Pre-Producción / MVP |
+| `http://localhost:4200` | Desarrollo Local |

@@ -22,6 +22,15 @@ Esta es la web de administración (panel de control) alojada en la capa gratuita
 - **Install Command:** `npm install`
 - **Development Command:** `vite`
 
+## Dominio Personalizado
+
+> ⚠️ Configuración actual bajo cuenta personal `ricardoalvaradoaponte@gmail.com`. **Pendiente de migrar a Azure Static Web Apps** (ver [Fase 3 del Roadmap](../../ROADMAP-MIGRATION-PRD.md)). El registro DNS está gestionado desde **SiteGround** (dominio `pachamama.eco`).
+
+- **Subdominio:** `app.pachamama.eco`
+- **URL Pública:** [https://app.pachamama.eco](https://app.pachamama.eco)
+- **Tipo de registro DNS:** CNAME
+- **Valor DNS (Vercel):** `28b117c987ffc012.vercel-dns-017.com`
+
 ## Infraestructura de Costeo de Build
 
 - **Build Machine:** Standard (4 vCPUs, 8 GB RAM)

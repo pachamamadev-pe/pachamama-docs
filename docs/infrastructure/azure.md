@@ -76,8 +76,16 @@ Las aplicaciones serverless desplegadas se ejecutan bajo planes de alojamiento d
 
 **A. Función de Autorización de Almacenamiento**
 - **Nombre:** pachamama-sas-func
+- **Nombre futuro (PRD):** func-pachamama-sas-prd
 - **Región:** eastus (Plan EastUSPlan - Dynamic)
 - **Propósito:** Valida la petición de un usuario para proporcionarle un token de acceso seguro por tiempo limitado para manipulación directa del blob storage evitando intermediar el payload por la API.
+- **Configuración CORS** *(requerida en ambas instancias — actual y futura)*:
+
+  | Origen Permitido | Entorno |
+  |---|---|
+  | `https://app.pachamama.eco` | Producción |
+  | `https://web-admin-pachamama.vercel.app` | Pre-Producción / MVP |
+  | `http://localhost:4200` | Desarrollo Local |
 
 **B. Función Sincronizadora CQRS (ReadModel)**
 - **Nombre:** pachamama-func-trace-sync-dev
