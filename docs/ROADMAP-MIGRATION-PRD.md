@@ -62,33 +62,39 @@ El paso evolutivo consiste en consolidar la infraestructura base dentro de Azure
 Esta primera versión "SaaS" se alinea a los servicios administrados de Azure (PaaS/Serverless) para maximizar la auto-escalabilidad sin incurrir en mantenimiento profundo de servidores (IaaS).
 
 ```mermaid
-architecture-beta
-    group api(cloud)[Azure Nube Corporativa PRD]
+flowchart LR
+    mobil([Mobile Android])
 
-    service webadmin(internet)[Azure Static Web Apps] in api
-    service mobil(mobile)[Mobile App Android]
-    
-    service aca(server)[Azure Container Apps\n(Microservicios Java)] in api
-    service func(server)[Azure Functions\n(NodeJS / Serverless)] in api
-    
-    service pgsql(database)[Azure DB PostgreSQL\nFlexible Server] in api
-    service cosmos(database)[Azure Cosmos DB\nfor MongoDB] in api
-    service redis(database)[Azure Cache\nfor Redis] in api
-    
-    service bus(database)[Azure Service Bus] in api
-    service blob(disk)[Azure Blob Storage] in api
-    
-    webadmin --> aca
-    mobil --> func
+    subgraph api[Azure Nube Corporativa PRD]
+        webadmin[Azure Static Web Apps]
+
+        subgraph compute[Cómputo]
+            aca[Azure Container Apps\nMicroservicios Java]
+            func[Azure Functions\nNodeJS / Serverless]
+        end
+
+        subgraph datos[Datos]
+            pgsql[(Azure DB PostgreSQL\nFlexible Server)]
+            cosmos[(Azure Cosmos DB\nfor MongoDB)]
+            redis[(Azure Cache\nfor Redis)]
+        end
+
+        subgraph mensajeria[Mensajería y Archivos]
+            bus[(Azure Service Bus)]
+            blob[Azure Blob Storage]
+        end
+    end
+
     mobil --> aca
-    
+    mobil --> func
+    webadmin --> aca
+
     aca --> pgsql
     aca --> cosmos
     aca --> redis
     aca --> bus
     func --> blob
     func --> bus
-    
     bus --> aca
 ```
 
