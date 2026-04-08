@@ -23,6 +23,15 @@ Esta es la web de landing (promocional o informativa) alojada en la capa gratuit
 - **Install Command:** `npm install`
 - **Development Command:** `vite`
 
+## Dominio Personalizado
+
+> ⚠️ Configuración actual bajo cuenta personal `jecrido@gmail.com`. **Pendiente de migrar a Azure Static Web Apps** (ver [Fase 3 del Roadmap](../../ROADMAP-MIGRATION-PRD.md)).
+
+- **Subdominio:** `landing.pachamama.eco`
+- **URL Pública:** [https://landing.pachamama.eco](https://landing.pachamama.eco)
+- **Tipo de registro DNS:** CNAME
+- **Valor DNS (Vercel):** `69cba288a6086eb9.vercel-dns-017.com`
+
 ## Infraestructura de Costeo de Build
 
 - **Build Machine:** Standard (4 vCPUs, 8 GB RAM)

@@ -17,8 +17,16 @@ A continuación el registro de correos vinculados para administrar los paneles d
 
 | Repositorio de Código | Proyecto en Vercel | URL Pública |
 |---|---|---|
-| pachamama-web-landing-v1 (GitHub Fork) | pachamama-web-landing-v1 | [Abrir](https://pachamama-web-landing-v1.vercel.app/) |
+| pachamama-web-landing-v1 (GitHub Fork) | pachamama-web-landing-v1 | [Abrir](https://pachamama-web-landing-v1.vercel.app/) <br> [landing.pachamama.eco](https://landing.pachamama.eco) |
 | pachamama-web-admin (GitHub Org) | web-admin-pachamama | [Abrir](https://web-admin-pachamama.vercel.app/) |
+
+### Dominios Personalizados
+
+> ⚠️ Los dominios personalizados configurados en Vercel corresponden a la cuenta personal `jecrido@gmail.com`. **Deben migrarse a Azure Static Web Apps** en la Fase 3 del Roadmap.
+
+| Proyecto Vercel | Subdominio | Tipo Registro | Valor DNS |
+|---|---|---|---|
+| pachamama-web-landing-v1 | `landing.pachamama.eco` | CNAME | `69cba288a6086eb9.vercel-dns-017.com` |
 
 ### Configuración Vercel y GitHub
 
