@@ -117,7 +117,7 @@ Bajo la nomenclatura propuesta, la infraestructura soportará picos aislados de 
 edis-pachamama-prd-eastus | Standard **C1** (1 GB) - Alta disponibilidad de nodos. |
 | **Mensajería** | Azure Service Bus | sb-pachamama-prd-eastus | **Standard Tier** - Soporte de Colas y Tópicos. |
 | **Archivos** | Azure Blob Storage | stpmamaprdeastus001 | **Standard General Purpose V2** (LRS). |
-| **Serverless Ops**| Azure Functions | unc-sas-prd <br> unc-tracesync-prd | Consumption Plan (Y1). |
+| **Serverless Ops**| Azure Functions | func-sas-prd <br> func-tracesync-prd | Consumption Plan (Y1). |
 
 *(Nota: Los servicios de proveedores terceros orientados a dominio como Twilio y Firebase persistirán agnósticos a la nube).*
 
@@ -125,12 +125,12 @@ edis-pachamama-prd-eastus | Standard **C1** (1 GB) - Alta disponibilidad de nodo
 
 **1. Tiempos de Implementación Estimados (Time-to-Market)**
 
-*   **Infraestructura como Código (Bicep/Terraform):** 1.5 a 2 semanas.
-*   **Refactorización de Redes Privadas y Seguridad:** 1 semana.
-*   **Migración de Datos (Railway -> Postgres, Atlas -> Cosmos):** 1 a 1.5 semanas. (Extracción y compatibilidad de PostGIS).
-*   **Migración de Pipelines CI/CD (GitHub Actions -> ACA/SWA):** 1 semana.
-*   **Pruebas de Carga (Stress Testing - 1000 users) y QA:** 1 semana.
-*   **Total de Ejecución:** **~5 a 6 Semanas** (1.5 Meses con equipo de Cloud/DevOps dedicado).
+*   **Infraestructura como Código (Bicep/Terraform):** 2 a 2.5 semanas.
+*   **Refactorización de Redes Privadas y Seguridad:** 1.5 semanas.
+*   **Migración de Datos (Railway -> Postgres, Atlas -> Cosmos):** 1.5 a 2 semanas. (Extracción y compatibilidad de PostGIS).
+*   **Migración de Pipelines CI/CD (GitHub Actions -> ACA/SWA):** 1.5 semanas.
+*   **Pruebas de Carga (Stress Testing - 1000 users) y QA:** 1.5 semanas.
+*   **Total de Ejecución:** **~8 Semanas o más** (2 Meses o más con equipo de Cloud/DevOps dedicado).
 
 **2. Costo Promedio Referencial (Azure Monthly Estimate)**
 
