@@ -27,8 +27,8 @@ Durante el proceso de onboarding, el recolector debe aceptar un documento de con
 | Componente | Versión | Descripción del Cambio |
 |---|---|---|
 | [Pachamama Mobile Android](pachamama-mobile-android.md) | `v1.1.0` → `v1.2.0` | Consentimiento cifrado, gestión de errores en sync, estrategia Online-First |
-
-> Este conjunto de cambios impacta exclusivamente al cliente móvil. Los servicios backend ya disponían de los endpoints necesarios.
+| [Pachamama API Admin (Java)](pachamama-api-admin-java.md) | — | Nuevo endpoint `POST /legal-documents/encrypted` con resolución de contexto y reemplazo de parámetros |
+| [Pachamama API Notifications (Java)](pachamama-api-notifications-java.md) | `v1.3.0` | Nueva API de Event Logging (`events_logging`) con registro y consultas paginadas |
 
 ---
 

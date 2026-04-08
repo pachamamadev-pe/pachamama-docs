@@ -55,6 +55,8 @@ nav:
       - "[30 Mar - 8 Abr 2026] Consentimiento Informado Cifrado":
         - Resumen Integral: gestion-cambios/consentimiento-informado-cifrado/index.md
         - Mobile Android: gestion-cambios/consentimiento-informado-cifrado/pachamama-mobile-android.md
+        - API Admin: gestion-cambios/consentimiento-informado-cifrado/pachamama-api-admin-java.md
+        - API Notifications: gestion-cambios/consentimiento-informado-cifrado/pachamama-api-notifications-java.md
 markdown_extensions:
   - pymdownx.superfences:
       custom_fences:
