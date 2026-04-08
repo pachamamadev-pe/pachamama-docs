@@ -116,3 +116,162 @@
 | Versión intermedia | `v1.1.0` |
 | Versión final | `v1.2.0` |
 | Tipo de cambio | Funcionalidad nueva + correcciones |
+
+---
+
+## Integración — Envío de Errores a la API de Notificaciones (`/api/events-logging`)
+
+### Resumen
+
+La app Android envía eventos de fallo a **`pachamama-api-notifications-java`**
+(`POST /api/events-logging`) con una estrategia **Online-First con fallback offline**: si hay conexión
+el log se envía inmediatamente; si no la hay, se persiste localmente en Room y se reintenta de forma
+automática cuando se recupera la red.
+
+**Endpoint:**
+```
+POST https://pachamama-api-notif-java-6245560b7544.herokuapp.com/api/events-logging
+Content-Type: application/json
+```
+
+---
+
+### Arquitectura de la Integración
+
+```
+┌─────────────────────────────────────┐
+│  FormViewModel / ActivitiesRepo     │
+│  (puntos de error)                  │
+└────────────────┬────────────────────┘
+                 │ logError(tag, process, message, statusCode, metadata)
+                 ▼
+┌─────────────────────────────────────┐
+│  EventLoggingRepository             │  ← @Singleton, inyectado por Hilt
+│  (capa de orquestación)             │
+└──────┬──────────────────┬───────────┘
+       │ Online            │ Offline / Error HTTP
+       ▼                   ▼
+┌─────────────┐   ┌────────────────────────┐
+│ POST        │   │  Room DB               │
+│ /api/events │   │  tabla: event_logs     │
+│ -logging    │   │  (EventLogEntity)      │
+└─────────────┘   └────────────┬───────────┘
+                               │ Cada 15 min (red disponible)
+                               ▼
+                  ┌────────────────────────┐
+                  │  EventLogSyncWorker    │
+                  │  (WorkManager)         │
+                  │  → syncOfflineLogs()   │
+                  └────────────────────────┘
+```
+
+---
+
+### Clases Involucradas
+
+#### `EventLoggingService` — Interfaz Retrofit
+
+```kotlin
+// data/logging/EventLoggingService.kt
+interface EventLoggingService {
+    @POST("api/events-logging")
+    suspend fun logEvent(@Body request: EventLogRequest): Response<Unit>
+}
+```
+
+- Instanciada vía `NetworkModule` con el cliente `LoggingRetrofit`.
+- Sin autenticación adicional.
+
+#### `EventLoggingRepository` — Orquestador
+
+```kotlin
+// data/logging/EventLoggingRepository.kt
+fun logError(
+    tag: String,
+    process: String,
+    message: String,
+    statusCode: String,
+    startTime: Long = System.currentTimeMillis(),
+    endTime: Long = System.currentTimeMillis(),
+    metadata: Map<String, Any> = emptyMap()
+)
+```
+
+- **Fire-and-forget**: no bloquea la corrutina del caller.
+- Auto-genera `traceId` (UUID), enriquece con `device` / `os` (Build.MODEL / Build.VERSION.RELEASE).
+- Toma `userId`, `tenantId`, `projectId` desde `SessionPreferences`.
+- Si el POST falla (red o HTTP) → `saveOfflineLog()` → INSERT en Room.
+
+#### `EventLogEntity` / `EventLogDao` — Almacenamiento Offline
+
+```kotlin
+@Entity(tableName = "event_logs")
+data class EventLogEntity(
+    @PrimaryKey val traceId: String,
+    val channel: String,         // siempre "app"
+    val channelVersion: String,  // BuildConfig.VERSION_NAME
+    val userId: String,
+    val tenantId: String,
+    val projectId: String,
+    val onboardingId: String,    // mismo que userId
+    val tag: String,
+    val process: String,
+    val startTime: Long,
+    val endTime: Long,
+    val level: String,
+    val message: String,
+    val statusCode: String,
+    val clientIp: String,        // "0.0.0.0"
+    val userAgent: String,       // "Android/{Build.VERSION.RELEASE}"
+    val environment: String,     // "prod"
+    val metadataString: String   // metadata serializada como JSON (Gson)
+)
+```
+
+#### `EventLogSyncWorker` — Reintentos Periódicos
+
+- Ejecuta `syncOfflineLogs()` cada **15 minutos** cuando hay red disponible.
+- Backoff exponencial de 10 minutos en caso de fallo del worker.
+
+---
+
+### Puntos de Integración en el Código
+
+| Clase | Método | `statusCode` | Descripción |
+|---|---|---|---|
+| `FormViewModel` | `saveAsPendingActivity` | `CRITICAL_ERROR` | Error crítico al guardar actividad en Room |
+| `ActivitiesRepository` | `uploadMediaAndReplaceFormData` | `FILE_NOT_FOUND` | El archivo de foto no existe en el dispositivo |
+| `ActivitiesRepository` | `uploadMediaAndReplaceFormData` | `UPLOAD_ERROR` | Fallo al subir imagen a Azure Blob Storage |
+| `ActivitiesRepository` | `syncPendingActivities` | `FATAL_SYNC_ERROR` | Error de infraestructura al enviar al Service Bus |
+
+---
+
+### Ejemplo de Payload Enviado
+
+```json
+{
+  "traceId":        "550e8400-e29b-41d4-a716-446655440000",
+  "channel":        "app",
+  "channelVersion": "1.2.0",
+  "userId":         "collector-uuid",
+  "tenantId":       "company-uuid",
+  "projectId":      "project-uuid",
+  "onboardingId":   "collector-uuid",
+  "tag":            "ActivitiesRepository",
+  "process":        "uploadMediaAndReplaceFormData",
+  "startTime":      1744120800000,
+  "endTime":        1744120801500,
+  "level":          "ERROR",
+  "message":        "Error en carga de archivos multimedia: file not found",
+  "statusCode":     "FILE_NOT_FOUND",
+  "clientIp":       "0.0.0.0",
+  "userAgent":      "Android/14",
+  "environment":    "prod",
+  "metadata": {
+    "device":      "Pixel 7",
+    "os":          "14",
+    "activityId":  "act-uuid",
+    "errorTrace":  "java.io.FileNotFoundException: ..."
+  }
+}
+```
