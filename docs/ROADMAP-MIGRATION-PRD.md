@@ -25,8 +25,7 @@ g-pachamama-prd-eastus)
 
 | Componente | Instancia Actual (Personal) | Propuesta Nuevo Nombre (Corporativo Prd) |
 |---|---|---|
-| **Resource Group** | n/a | 
-g-pachamama-prd-eastus |
+| **Resource Group** | rg-pachamama | g-pachamama-prd-eastus |
 | **Blob Storage** | sapachamama001 | stpmamaprdeastus001 |
 | **Service Bus** | pachamama-sync-batch | sb-pachamama-prd-eastus |
 | **Funciones SAS** | pachamama-func-sas-node | func-pachamama-sas-prd |
