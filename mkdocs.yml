@@ -57,6 +57,9 @@ nav:
         - Mobile Android: gestion-cambios/consentimiento-informado-cifrado/pachamama-mobile-android.md
         - API Admin: gestion-cambios/consentimiento-informado-cifrado/pachamama-api-admin-java.md
         - API Notifications: gestion-cambios/consentimiento-informado-cifrado/pachamama-api-notifications-java.md
+      - "[8-9 Abr 2026] Permisos Requeridos (Android)":
+        - Resumen Integral: gestion-cambios/permisos-requeridos/index.md
+        - Mobile Android: gestion-cambios/permisos-requeridos/pachamama-mobile-android.md
 markdown_extensions:
   - pymdownx.superfences:
       custom_fences:
