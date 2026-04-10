@@ -113,8 +113,7 @@ Bajo la nomenclatura propuesta, la infraestructura soportará picos aislados de 
 | **Api Trace** | Azure Container App | ca-api-trace-prd | 0.5 vCPU / 1GB RAM |
 | **DB Relacional** | Azure PostgreSQL | psql-pachamama-prd-eastus | Flexible Server - **General Purpose D2ds_v4** (2 vCores, 8GB RAM). |
 | **DB NoSQL** | Azure Cosmos DB (Mongo) | cosmos-pachamama-prd-eastus | Capacity Mode: **Serverless** (Pago estricto por RU/s consumido). |
-| **Caché** | Azure Cache for Redis | 
-edis-pachamama-prd-eastus | Standard **C1** (1 GB) - Alta disponibilidad de nodos. |
+| **Caché** | Azure Cache for Redis | redis-pachamama-prd-eastus | Standard **C1** (1 GB) - Alta disponibilidad de nodos. |
 | **Mensajería** | Azure Service Bus | sb-pachamama-prd-eastus | **Standard Tier** - Soporte de Colas y Tópicos. |
 | **Archivos** | Azure Blob Storage | stpmamaprdeastus001 | **Standard General Purpose V2** (LRS). |
 | **Serverless Ops**| Azure Functions | func-sas-prd <br> func-tracesync-prd | Consumption Plan (Y1). |

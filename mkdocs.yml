@@ -10,6 +10,8 @@ nav:
   - Inicio: index.md
   - Roadmap Migración y Prd: ROADMAP-MIGRATION-PRD.md
   - Arquitectura MVP (Pre-Pro): MVP-ARCHITECTURE.md
+  - Arquitecturas y Migración Azure:
+      - "Migración Completa Azure — v2.0 (Oficial)": arquitecturas/ARQ-PACHAMAMA-AZURE-FULL-20260410-v2.md
   - Infraestructura y Cloud:
       - Cuentas Heroku: infrastructure/heroku.md
       - Cuentas Vercel: infrastructure/vercel.md
@@ -40,6 +42,9 @@ nav:
         - Func SAS: services/pachamama-func-sas-node/README.md
         - Func Traceability: services/pachamama-func-trace-sync/README.md
   - Gestión de Cambios:
+      - "[10 Abr 2026] Validación de Conectividad y Sincronización":
+        - Resumen Integral: gestion-cambios/validacion-conectividad-sincronizacion/index.md
+        - Mobile Android: gestion-cambios/validacion-conectividad-sincronizacion/pachamama-mobile-android.md
       - "[23-26 Mar 2026] Sincronización y KPIs":
         - Resumen Integral: gestion-cambios/observacion-kpi-sincronizacion/index.md
         - Mobile Android: gestion-cambios/observacion-kpi-sincronizacion/pachamama-mobile-android.md
