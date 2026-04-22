@@ -70,93 +70,116 @@ Lectura de decision:
 ### Opcion A - Estandar Administrada
 
 ```mermaid
-architecture-beta
-    group channels(internet)[Canales]
-    service mobile(server)[Android] in channels
-    service web(server)[Admin y Landing] in channels
+flowchart LR
+    subgraph channels["Canales"]
+        direction TB
+        web["Admin y Landing"]
+        mobile["Android"]
+    end
 
-    group managed(cloud)[Opcion A Administrada]
-    service front(server)[Static Web Apps] in managed
-    service api(server)[Container Apps APIs] in managed
-    service functions(server)[Azure Functions] in managed
-    service pg(database)[PostgreSQL Flexible] in managed
-    service cosmos(database)[Cosmos DB Mongo API] in managed
-    service servicebus(server)[Service Bus Standard] in managed
-    service blob(disk)[Blob Storage Hot LRS] in managed
-    service obs(server)[App Insights y Logs] in managed
+    subgraph managed["Opcion A Administrada"]
+        direction TB
+        subgraph appA["Capa de acceso y aplicacion"]
+            direction LR
+            front["Static Web Apps"] --> api["Container Apps APIs"] --> functions["Azure Functions"]
+        end
+        subgraph dataA["Datos y soporte"]
+            direction LR
+            pg[("PostgreSQL Flexible")]
+            cosmos[("Cosmos DB Mongo API")]
+            servicebus["Service Bus Standard"]
+            obs["App Insights y Logs"]
+            blob["Blob Storage Hot LRS"]
+        end
+    end
 
-    mobile:R --> L:api
-    web:B --> T:front
-    front:R --> L:api
-    api:B --> T:pg
-    api:B --> T:cosmos
-    api:R --> L:servicebus
-    api:R --> L:functions
-    functions:B --> T:blob
-    api:B --> T:obs
-    servicebus:B --> T:cosmos
+    web --> front
+    mobile --> api
+    api --> pg
+    api --> cosmos
+    api --> servicebus
+    api --> obs
+    functions --> blob
+    servicebus --> cosmos
 ```
 
 ### Opcion B - Escalable Intermedia
 
 ```mermaid
-architecture-beta
-    group channels(internet)[Canales]
-    service mobile(server)[Android] in channels
-    service web(server)[Admin y Landing] in channels
+flowchart LR
+    subgraph channels["Canales"]
+        direction TB
+        web["Admin y Landing"]
+        mobile["Android"]
+    end
 
-    group scalable(cloud)[Opcion B Escalable]
-    service front(server)[Static Web Apps] in scalable
-    service apim(server)[API Management] in scalable
-    service api(server)[Container Apps por dominio] in scalable
-    service worker(server)[Functions y jobs] in scalable
-    service pg(database)[PostgreSQL zonal] in scalable
-    service cosmos(database)[Read models] in scalable
-    service sb(server)[Service Bus Standard] in scalable
-    service blob(disk)[Blob Hot y Cool] in scalable
-    service monitor(server)[Monitor y logs] in scalable
+    subgraph scalable["Opcion B Escalable"]
+        direction TB
+        subgraph accessB["Acceso y servicios"]
+            direction LR
+            front["Static Web Apps"] --> apim["API Management"] --> api["Container Apps por dominio"]
+        end
+        subgraph automationB["Procesamiento"]
+            direction LR
+            worker["Functions y jobs"]
+        end
+        subgraph dataB["Datos y gobierno"]
+            direction LR
+            pg[("PostgreSQL zonal")]
+            cosmos[("Read models")]
+            sb["Service Bus Standard"]
+            blob["Blob Hot y Cool"]
+            monitor["Monitor y logs"]
+        end
+    end
 
-    web:B --> T:front
-    front:R --> L:apim
-    mobile:B --> T:apim
-    apim:B --> T:api
-    api:B --> T:pg
-    api:B --> T:cosmos
-    api:R --> L:sb
-    api:R --> L:blob
-    worker:B --> T:blob
-    api:B --> T:monitor
+    web --> front
+    mobile --> apim
+    api --> pg
+    api --> cosmos
+    api --> sb
+    api --> blob
+    api --> monitor
+    sb --> worker
+    worker --> blob
 ```
 
 ### Opcion C - Alta Disponibilidad y Resiliencia
 
 ```mermaid
-architecture-beta
-    group channels(internet)[Canales]
-    service mobile(server)[Android] in channels
-    service web(server)[Admin y Landing] in channels
+flowchart LR
+    subgraph channels["Canales"]
+        direction TB
+        web["Admin y Landing"]
+        mobile["Android"]
+    end
 
-    group edge(cloud)[Seguridad y Exposicion]
-    service agw(server)[Application Gateway WAF] in edge
+    subgraph edge["Seguridad y exposicion"]
+        direction LR
+        agw["Application Gateway WAF"] --> apim["API Management"]
+    end
 
-    group resilient(cloud)[Opcion C Resiliente]
-    service aks(server)[AKS] in resilient
-    service apim(server)[API Management] in resilient
-    service pg(database)[PostgreSQL HA y replicas] in resilient
-    service cosmos(database)[Read models y eventos] in resilient
-    service sb(server)[Service Bus Premium] in resilient
-    service blob(disk)[Blob Storage ZRS o GRS] in resilient
-    service monitor(server)[Monitor y SIEM] in resilient
+    subgraph resilient["Opcion C Resiliente"]
+        direction TB
+        aks["AKS"]
+        subgraph dataC["Datos y continuidad"]
+            direction LR
+            pg[("PostgreSQL HA y replicas")]
+            cosmos[("Read models y eventos")]
+            sb["Service Bus Premium"]
+            blob["Blob Storage ZRS o GRS"]
+            monitor["Monitor y SIEM"]
+        end
+    end
 
-    web:B --> T:agw
-    mobile:B --> T:agw
-    agw:R --> L:apim
-    apim:B --> T:aks
-    aks:B --> T:pg
-    aks:B --> T:cosmos
-    aks:R --> L:sb
-    aks:R --> L:blob
-    aks:B --> T:monitor
+    web --> agw
+    mobile --> agw
+    apim --> aks
+    aks --> pg
+    aks --> cosmos
+    aks --> sb
+    aks --> blob
+    aks --> monitor
 ```
 
 ## Opciones Arquitectonicas
