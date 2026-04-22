@@ -75,7 +75,7 @@ architecture-beta
     service mobile(server)[Android] in channels
     service web(server)[Admin y Landing] in channels
 
-    group managed(cloud)[Opcion A - Administrada]
+    group managed(cloud)[Opcion A Administrada]
     service front(server)[Static Web Apps] in managed
     service api(server)[Container Apps APIs] in managed
     service functions(server)[Azure Functions] in managed
@@ -105,7 +105,7 @@ architecture-beta
     service mobile(server)[Android] in channels
     service web(server)[Admin y Landing] in channels
 
-    group scalable(cloud)[Opcion B - Escalable]
+    group scalable(cloud)[Opcion B Escalable]
     service front(server)[Static Web Apps] in scalable
     service apim(server)[API Management] in scalable
     service api(server)[Container Apps por dominio] in scalable
@@ -139,7 +139,7 @@ architecture-beta
     group edge(cloud)[Seguridad y Exposicion]
     service agw(server)[Application Gateway WAF] in edge
 
-    group resilient(cloud)[Opcion C - Resiliente]
+    group resilient(cloud)[Opcion C Resiliente]
     service aks(server)[AKS] in resilient
     service apim(server)[API Management] in resilient
     service pg(database)[PostgreSQL HA y replicas] in resilient
