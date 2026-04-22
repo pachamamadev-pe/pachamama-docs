@@ -3,7 +3,7 @@
 **Proyecto:** Pachamama SaaS  
 **Fecha:** 2026-04-21  
 **Proveedor principal:** Azure  
-**Version:** 0.1 - Documento base de trabajo
+**Version:** 0.3 - Documento base alineado con bandas de costo y hitos 2026-2030
 
 ## Resumen Ejecutivo
 
@@ -14,6 +14,8 @@ La necesidad central no es solo conocer cuanto costara migrar o ejecutar la plat
 El analisis debe partir de tres realidades. Primero, Pachamama hoy opera sobre una arquitectura MVP distribuida en varios proveedores y la migracion base a Azure ya fue planteada como un paso inicial. Segundo, el producto todavia no cuenta con suficiente historia operativa para proyectar crecimiento real con precision estadistica. Tercero, ya existe una senal tecnica util: el patron actual de datos permite identificar cuales entidades y flujos son los principales generadores de almacenamiento, procesamiento y retencion.
 
 Este brief deja claro el problema, el alcance del informe esperado, los supuestos iniciales, las preguntas que el negocio necesita responder y las decisiones de arquitectura que deberan compararse en la siguiente iteracion.
+
+Desde esta revision, el brief tambien adopta el mismo lenguaje economico que el documento de arquitectura y el anexo de costos. En particular, la discusion sobre evolucion de plataforma ya no se apoya solo en volumen proyectado, sino tambien en **bandas de costo total base en escenario escalado** para 2026-2030.
 
 ## Intencion del Documento
 
@@ -110,6 +112,44 @@ Para que el modelo de suscripcion tenga coherencia con la infraestructura, los s
 | Archivos por actividad | Blob Storage (imagenes y videos), replicas, lifecycle, egress | Principal driver de almacenamiento y retencion |
 | Reportes y trazabilidad | Lecturas, colas/eventos, read models | Incremento de procesamiento y observabilidad |
 
+### Proyecciones de Negocio Incorporadas (Cierre Anual)
+
+El Excel de negocio ya aporta una curva de crecimiento al cierre de cada anio entre 2026 y 2030. Esa curva reemplaza la ausencia previa de proyecciones y pasa a ser la base de planeamiento para el informe posterior.
+
+| Anio | Clientes | Comunidades | Recolectores | Lotes activos | Comunidades / cliente | Recolectores / comunidad |
+|---|---|---|---|---|---|---|
+| 2026 | 13 | 260 | 7,800 | 17,424 | 20.00 | 30.00 |
+| 2027 | 23 | 500 | 15,000 | 45,504 | 21.74 | 30.00 |
+| 2028 | 40 | 820 | 24,600 | 74,964 | 20.50 | 30.00 |
+| 2029 | 61 | 1,180 | 35,400 | 106,392 | 19.34 | 30.00 |
+| 2030 | 84 | 1,560 | 46,800 | 138,384 | 18.57 | 30.00 |
+
+Lecturas iniciales de la proyeccion:
+
+- el modelo comercial mantiene una relacion muy estable de **30 recolectores por comunidad**;
+- el numero de comunidades por cliente se mueve aproximadamente entre **18.6 y 21.7**;
+- los lotes activos muestran una trayectoria creciente que refuerza la necesidad de modelar almacenamiento, trazabilidad y retencion desde el inicio.
+
+### Bandas de Costo de Referencia Alineadas con Arquitectura
+
+Para que el brief, la arquitectura formal y el anexo economico hablen exactamente el mismo lenguaje, se adopta como referencia el **escenario base con plataforma escalada**.
+
+| Anio | Clientes | Recolectores | Lotes activos | Costo mensual base escalado | Banda recomendada |
+|---|---|---|---|---|---|
+| 2026 | 13 | 7,800 | 17,424 | USD 606.97 | Opcion A |
+| 2027 | 23 | 15,000 | 45,504 | USD 854.52 | Opcion A |
+| 2028 | 40 | 24,600 | 74,964 | USD 1,402.16 | Opcion B |
+| 2029 | 61 | 35,400 | 106,392 | USD 1,859.30 | Opcion B con evaluacion selectiva de componentes C |
+| 2030 | 84 | 46,800 | 138,384 | USD 2,327.05 | Opcion C solo si SLA, compliance o riesgo lo justifican |
+
+Lectura de negocio compartida entre los tres documentos:
+
+- **Opcion A** cubre el tramo 2026-2027 mientras el costo total base se mantiene en una banda de hasta aproximadamente **USD 855/mes**;
+- **Opcion B** se convierte en referencia natural desde 2028, cuando el escenario base escalado supera aproximadamente **USD 1,400/mes** y exige mejor gobierno de APIs, datos y observabilidad;
+- **Opcion C** no debe activarse por intuicion, sino cuando el negocio necesite una capa adicional de resiliencia y el costo/riesgo justifique una banda desde aproximadamente **USD 2,300/mes** antes de sumar componentes enterprise.
+
+> Esta banda de costo no representa precio comercial final al cliente. Representa el umbral economico de infraestructura compartida sobre el que luego debe construirse margen, soporte, continuidad y pricing diferencial.
+
 ### Supuesto Operativo Cuantificado para Blob Storage
 
 Para el modelado inicial de almacenamiento multimedia se incorpora el siguiente marco de referencia:
@@ -118,6 +158,8 @@ Para el modelado inicial de almacenamiento multimedia se incorpora el siguiente 
 - cada actividad puede registrar entre 1 y 20 imagenes de menos de 1 MB cada una;
 - cada actividad puede registrar entre 1 y 5 videos de menos de 2 MB cada uno;
 - toda esta evidencia multimedia se almacena en Azure Blob Storage.
+
+Aplicado sobre la proyeccion de negocio, este supuesto impacta sobre una base que pasa de **7,800 recolectores proyectados en 2026** a **46,800 recolectores proyectados en 2030**.
 
 Como lectura preliminar para estimacion, este supuesto define un techo teorico cercano a **30 MB por actividad** en evidencia multimedia y hasta **6,000 MB por recolector/cliente** en un escenario de maxima carga, sin considerar replicas, versionado, metadatos ni politicas de retencion.
 
@@ -194,7 +236,7 @@ La mejor opcion no sera universal; dependera del nivel de riesgo aceptado, del c
 
 ## Momento en que Podra Estimarse el Crecimiento Real
 
-Hoy no existe suficiente historia para proyectar crecimiento real con alta confianza. Por eso, la siguiente fase debe construir escenarios basados en supuestos y dejar trazados los medidores que luego permitiran recalibrar el modelo.
+Hoy ya existe una proyeccion comercial 2026-2030 entregada por negocio, pero aun no existe suficiente historia operativa para convertir esa curva en comportamiento real con alta confianza. Por eso, la siguiente fase debe contrastar esa proyeccion con telemetria y dejar trazados los medidores que luego permitiran recalibrar el modelo.
 
 En terminos practicos, se recomienda considerar que habra una primera base razonable para estimacion real cuando se cumplan al menos una o varias de estas condiciones:
 
@@ -240,13 +282,14 @@ El tamanio actual es util como referencia tecnica de partida, pero todavia no re
 
 Para que la siguiente version del informe sea financieramente util, faltan los siguientes insumos:
 
-- proyecciones del Excel de negocio: clientes, comunidades y recolectores por horizonte temporal;
+- confirmacion de que los valores anuales del Excel representan cierre de anio y no promedio del anio, para evitar errores de lectura financiera;
 - distribucion real de actividades por recolector por dia, semana y mes, tomando como supuesto inicial un rango de 10 a 200 actividades por cliente;
 - distribucion real de archivos por actividad y tamano efectivo por tipo de archivo, tomando como referencia inicial entre 1 y 20 imagenes de menos de 1 MB y entre 1 y 5 videos de menos de 2 MB, todos en Blob Storage;
 - requerimientos de concurrencia, picos de uso y ventanas de sincronizacion;
 - objetivos de disponibilidad, RPO y RTO;
 - politicas esperadas de retencion funcional, legal y tecnica;
-- supuestos de crecimiento del modulo de reportes, trazabilidad y notificaciones.
+- supuestos de crecimiento del modulo de reportes, trazabilidad y notificaciones;
+- correlacion esperada entre lotes activos, volumen documental y trazabilidad historica por cliente.
 
 ## Recomendaciones Iniciales para la Siguiente Iteracion
 
@@ -256,6 +299,23 @@ Para que la siguiente version del informe sea financieramente util, faltan los s
 4. Modelar por separado base de datos, blobs, observabilidad y replicas, porque no crecen al mismo ritmo.
 5. Definir desde el inicio politicas de lifecycle y limpieza para archivos, logs y errores tecnicos voluminosos.
 6. Evitar activar componentes de alta complejidad como AKS antes de que existan indicadores claros de necesidad.
+
+## Paquete Minimo para Presentacion a Negocio
+
+Con esta revision, ya existe un paquete coherente de tres piezas para presentar a negocio sin cambiar de lenguaje entre documentos:
+
+| Documento | Rol en la presentacion | Mensaje principal |
+|---|---|---|
+| `ARQ-PACHAMAMA-AZURE-PROYECCION-COSTOS-20260421.md` | Brief base | explica el problema de negocio, los supuestos y las bandas de referencia 2026-2030 |
+| `ARQ-PACHAMAMA-AZURE-ESCALAMIENTO-Y-PRICING-20260421.md` | Documento de arquitectura | muestra las opciones A/B/C, los hitos y la recomendacion tecnica alineada a costos |
+| `AZURE-COSTOS-PACHAMAMA-DRIVERS-20260421.md` | Anexo economico | demuestra las formulas, tablas anuales y drivers que sostienen la conversacion financiera |
+
+Decisiones que negocio ya puede tomar con este paquete:
+
+1. Aceptar **Opcion A** como base 2026-2027 y usarla como punto de partida presupuestal.
+2. Reconocer **2028** como el primer punto formal de evaluacion para evolucionar a **Opcion B**.
+3. Tratar **Opcion C** como una decision de resiliencia y riesgo, no como una inversion obligatoria desde el inicio.
+4. Diseñar el pricing comercial con un **cargo base + cargo variable por consumo/retencion**, en lugar de una tarifa plana sin trazabilidad economica.
 
 ## Entregables Esperados de la Proxima Version
 

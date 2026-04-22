@@ -12,6 +12,8 @@ nav:
   - Arquitectura MVP (Pre-Pro): MVP-ARCHITECTURE.md
   - Arquitecturas y Migración Azure:
       - "Brief de Proyeccion de Costos Azure": arquitecturas/ARQ-PACHAMAMA-AZURE-PROYECCION-COSTOS-20260421.md
+      - "Arquitectura de Escalamiento y Pricing — v1.0": arquitecturas/ARQ-PACHAMAMA-AZURE-ESCALAMIENTO-Y-PRICING-20260421.md
+      - "Anexo de Costos y Drivers Azure": arquitecturas/AZURE-COSTOS-PACHAMAMA-DRIVERS-20260421.md
       - "Migración Completa Azure — v2.0 (Oficial)": arquitecturas/ARQ-PACHAMAMA-AZURE-FULL-20260410-v2.md
   - Infraestructura y Cloud:
       - Cuentas Heroku: infrastructure/heroku.md
