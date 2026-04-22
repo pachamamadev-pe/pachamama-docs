@@ -1,0 +1,130 @@
+Estimacion de arquitectura en azure y proyecciones
+
+el objetivo es poder determinar una proyeccion de precios en los recursos de azure para la infraestructura de nuestro saas para asi poder determinar el precio de las suscripcion a nuestros clientes.
+Se partira de supuestos que un cliente ocupa determinado espacio de base de datos, y almacenamiento en blob storage.
+Negocio nos alcanzo un excel con las proyecciones de clientes, comunidades y recolecores.
+Los clientes trabajan con comunidades y a su vez estas comunidades tienen un numero de recolectores.
+Las actividades de estos recolectores es lo que genera la informacion en actividades, registros en coordenadas, trazabilidad y lotes de produccion, todo esto en base de datos.
+Asi tambien se generan archivos multimedia por cada actividad.
+El negocio desea saber cuales de los recursos de azure tienen precio fijo, cuales se incrementan a medida que crezca el negocio, y cuales son costos por uso.
+De tal manera que el negocio pueda ayudarse a establecer el precio de la suscripcion por cliente.
+Se desea tambien proyectar una arquitectura mas robusta (diagrama mermaind) a la actualmente planteada.
+Recordemos que la actualmente planteada corresponde a una migracion basica del entorno actual a azure,
+pero negocio pretende crecer y se necesita ampliar los recursos para satisfacer las necesidades, como aks, balanceadores, etc. Con tal de obtener el mejor rendimiento posible
+Entonces el informe debe incluir la arquitectura base propuesta y una arquitectura robusta en una etapa prudente del producto
+Se debe mencionar el porque de la migracion y cuanto afecta y cambia el costo del mismo.
+Cabe resaltar que estamos partiendo de 0 sin informacion del crecimiento, es bueno indicar a negocio en que momento se tiene conocimiento de poder estimar un crecimiento real
+
+tambien negocio quiere saber como se aplican las politicas de retencion, es decir si quiere retener datos minimo 5 o 7 años,
+del mismo modo cual seria la mejor opcion de replicacion de datos, tanto de la base de datos como storage
+
+Como experto arquitecto ten en cuenta otras consideraciones para dar mas claridad a negocio y poder responder sus dudas
+
+mensaje de negocio:
+
+"
+Por otro lado nos gustaría saber que líneas de la estructura de costos que nos mostraste están amarradas a componentes variables que puedan conectarse con las proyecciones adjuntas y tener coherencia entre los ingresos y sus correspondientes costos.
+"
+
+
+En nuestros datos de prueba en STG tenemos lo siguiente
+
+# Snapshot de Espacio en BD por Empresa
+**Fecha:** 2026-04-21
+**BD QA:** `pachamama_db` en Railway (`switchback.proxy.rlwy.net:34238`)
+**Ejecutado por:** GitHub Copilot Agent
+**Próximo snapshot:** 2026-04-28 (en 7 días)
+
+---
+
+## Resumen por Empresa
+
+| Empresa | Filas totales | Tablas activas | Total MB |
+|---|---|---|---|
+| Empresa Demo Pachamama S.A.C. | 1,895 | 11 | **5.19 MB** |
+| REORI CORP S.A.C. | 330 | 11 | 2.35 MB |
+| COMUNIDAD CAMPESINA DE PARA | 65 | 9 | 0.75 MB |
+| Empresa Demo 03 | 161 | 10 | 0.69 MB |
+| DEMO 01 | 3 | 1 | 0.01 MB |
+| **TOTAL BD (incluye índices, PostGIS, etc.)** | — | — | **43 MB** |
+
+---
+
+## Detalle por Empresa y Tabla
+
+| Empresa | Tabla | Filas | MB |
+|---|---|---|---|
+| Empresa Demo Pachamama S.A.C. | core.activities | 988 | 2.2254 |
+| REORI CORP S.A.C. | core.collection_requests | 5 | 1.2891 |
+| Empresa Demo Pachamama S.A.C. | core.collection_requests | 4 | 1.0313 |
+| Empresa Demo Pachamama S.A.C. | core.forest_units | 733 | 0.9035 |
+| COMUNIDAD CAMPESINA DE PARA | core.collection_requests | 2 | 0.5156 |
+| Empresa Demo Pachamama S.A.C. | core.collection_batches | 3 | 0.2695 |
+| Empresa Demo 03 | core.collection_requests | 1 | 0.2578 |
+| REORI CORP S.A.C. | core.activities | 103 | 0.2320 |
+| Empresa Demo Pachamama S.A.C. | audit.project_history | 54 | 0.2068 |
+| Empresa Demo Pachamama S.A.C. | core.entity_documents | 48 | 0.1590 |
+| Empresa Demo 03 | core.activities | 69 | 0.1554 |
+| REORI CORP S.A.C. | core.forest_units | 103 | 0.1270 |
+| REORI CORP S.A.C. | core.users | 10 | 0.1202 |
+| Empresa Demo Pachamama S.A.C. | geo.projects | 27 | 0.1183 |
+| REORI CORP S.A.C. | audit.project_history | 29 | 0.1111 |
+| REORI CORP S.A.C. | core.entity_documents | 33 | 0.1093 |
+| REORI CORP S.A.C. | catalog.form_schemas | 18 | 0.1067 |
+| REORI CORP S.A.C. | audit.report_certificates | 12 | 0.0901 |
+| Empresa Demo 03 | core.collection_batches | 1 | 0.0898 |
+| REORI CORP S.A.C. | core.collection_batches | 1 | 0.0898 |
+| Empresa Demo 03 | core.forest_units | 68 | 0.0838 |
+| Empresa Demo Pachamama S.A.C. | catalog.form_schemas | 13 | 0.0770 |
+| Empresa Demo Pachamama S.A.C. | catalog.document_types | 11 | 0.0678 |
+| Empresa Demo Pachamama S.A.C. | audit.report_certificates | 9 | 0.0676 |
+| Empresa Demo Pachamama S.A.C. | core.users | 5 | 0.0601 |
+| REORI CORP S.A.C. | geo.projects | 13 | 0.0570 |
+| COMUNIDAD CAMPESINA DE PARA | core.entity_documents | 14 | 0.0464 |
+| COMUNIDAD CAMPESINA DE PARA | audit.project_history | 11 | 0.0421 |
+| COMUNIDAD CAMPESINA DE PARA | audit.report_certificates | 4 | 0.0300 |
+| COMUNIDAD CAMPESINA DE PARA | catalog.form_schemas | 5 | 0.0296 |
+| COMUNIDAD CAMPESINA DE PARA | core.activities | 12 | 0.0270 |
+| Empresa Demo 03 | audit.project_history | 7 | 0.0268 |
+| COMUNIDAD CAMPESINA DE PARA | geo.projects | 6 | 0.0263 |
+| COMUNIDAD CAMPESINA DE PARA | core.users | 2 | 0.0240 |
+| Empresa Demo 03 | core.users | 2 | 0.0240 |
+| Empresa Demo 03 | core.entity_documents | 7 | 0.0232 |
+| REORI CORP S.A.C. | catalog.document_types | 3 | 0.0185 |
+| Empresa Demo 03 | catalog.form_schemas | 3 | 0.0178 |
+| COMUNIDAD CAMPESINA DE PARA | core.forest_units | 9 | 0.0111 |
+| DEMO 01 | core.entity_documents | 3 | 0.0099 |
+| Empresa Demo 03 | geo.projects | 2 | 0.0088 |
+| Empresa Demo 03 | audit.report_certificates | 1 | 0.0075 |
+
+---
+
+## Tamaño Real por Schema (incluye índices y TOAST)
+
+| Schema | Tamaño real |
+|---|---|
+| audit | 9,504 KB |
+| core | 7,680 KB |
+| public (PostGIS spatial_ref_sys) | 7,224 KB |
+| geo | 5,512 KB |
+| catalog | 1,536 KB |
+| admin_analytics | 112 KB |
+| **TOTAL BD** | **43 MB** |
+
+### Tablas más grandes (por tamaño total con índices)
+| Tabla | Tamaño total | Datos | Índices | Filas aprox |
+|---|---|---|---|---|
+| public.spatial_ref_sys | 7,144 KB | 6,896 KB | 208 KB | 8,500 |
+| audit.sync_errors | 6,480 KB | 16 KB | 3,264 KB | 26 |
+| geo.areas | 3,176 KB | 1,272 KB | 864 KB | 1,317 |
+| core.activities | 2,664 KB | 920 KB | 1,072 KB | 1,155 |
+| geo.area_imports | 1,936 KB | 64 KB | 80 KB | 40 |
+| core.forest_units | 1,136 KB | 504 KB | 592 KB | 900 |
+| audit.sync_batches | 648 KB | 200 KB | 416 KB | 904 |
+| catalog.form_schemas | 352 KB | 120 KB | 192 KB | 58 |
+| core.entity_documents | 312 KB | 64 KB | 208 KB | 92 |
+| core.collection_requests | 264 KB | 8 KB | 248 KB | 1 |
+
+> **Nota:** `audit.sync_errors` tiene 6.4 MB pero solo 26 filas — tiene campos TOAST muy grandes
+> (probablemente stacktraces o payloads JSON). Revisar si necesita limpieza.
+> `core.collection_requests` tiene 248 KB de índices para solo 1 fila — considerar si los índices son excesivos.
