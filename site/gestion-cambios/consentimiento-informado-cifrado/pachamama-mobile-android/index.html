@@ -1,0 +1,3428 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../">
+      
+      
+        <link rel="next" href="../pachamama-api-admin-java/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Mobile Android - Documentación Pachamama</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/mermaid-zoom.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="light-green">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#changelog-pachamama-mobile-android" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Documentación Pachamama" class="md-header__button md-logo" aria-label="Documentación Pachamama" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Documentación Pachamama
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Mobile Android
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Documentación Pachamama" class="md-nav__button md-logo" aria-label="Documentación Pachamama" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Documentación Pachamama
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inicio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ROADMAP-MIGRATION-PRD/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Roadmap Migración y Prd
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../MVP-ARCHITECTURE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Arquitectura MVP (Pre-Pro)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Arquitecturas y Migración Azure
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Arquitecturas y Migración Azure
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../arquitecturas/ARQ-PACHAMAMA-AZURE-PROYECCION-COSTOS-20260421/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Brief de Proyeccion de Costos Azure
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../arquitecturas/ARQ-PACHAMAMA-AZURE-ESCALAMIENTO-Y-PRICING-20260421/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Arquitectura de Escalamiento y Pricing — v1.0
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../arquitecturas/AZURE-COSTOS-PACHAMAMA-DRIVERS-20260421/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Anexo de Costos y Drivers Azure
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../arquitecturas/ARQ-PACHAMAMA-AZURE-FULL-20260410-v2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Migración Completa Azure — v2.0 (Oficial)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Infraestructura y Cloud
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Infraestructura y Cloud
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../infrastructure/heroku/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cuentas Heroku
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../infrastructure/vercel/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cuentas Vercel
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../infrastructure/azure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Plataforma Azure
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../infrastructure/railway/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    BD Railway
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../infrastructure/mongodb/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    BD MongoDB
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../infrastructure/redis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Caché Redis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../infrastructure/firebase/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Firebase
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../infrastructure/twilio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Comunicaciones y Meta
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reglas de Negocio y Seguridad
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Reglas de Negocio y Seguridad
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../roles-permisos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Roles y Permisos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Flujos Arquitectónicos
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Flujos Arquitectónicos
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../flujos/sincronizacion-offline/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sincronización Offline Android
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../flujos/trazabilidad-cqrs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trazabilidad y CQRS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../flujos/gestion-archivos-sas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Carga de Archivos (SAS)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../flujos/notificaciones-push/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Notificaciones Push
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Servicios
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Servicios
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_1" id="__nav_8_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Frontend
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Frontend
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../services/pachamama-web-landing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Web Landing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../services/pachamama-web-admin/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Web Admin
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../services/pachamama-mobile-android/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mobile App
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_2" id="__nav_8_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Backend (Java)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Backend (Java)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../services/pachamama-api-admin-java/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Admin
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../services/pachamama-api-sync-java/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Sync
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../services/pachamama-api-notifications-java/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Notificaciones
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../services/pachamama-api-trace-java/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Traceability
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_3" id="__nav_8_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Serverless (Azure)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Serverless (Azure)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../services/pachamama-func-sas-node/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Func SAS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../services/pachamama-func-trace-sync/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Func Traceability
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Gestión de Cambios
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Gestión de Cambios
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_9_1" id="__nav_9_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [10 Abr 2026] Validación de Conectividad y Sincronización
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    [10 Abr 2026] Validación de Conectividad y Sincronización
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../validacion-conectividad-sincronizacion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Resumen Integral
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../validacion-conectividad-sincronizacion/pachamama-mobile-android/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mobile Android
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_9_2" id="__nav_9_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [23-26 Mar 2026] Sincronización y KPIs
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    [23-26 Mar 2026] Sincronización y KPIs
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../observacion-kpi-sincronizacion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Resumen Integral
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../observacion-kpi-sincronizacion/pachamama-mobile-android/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mobile Android
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../observacion-kpi-sincronizacion/pachamama-api-sync-java/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Sync
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../observacion-kpi-sincronizacion/pachamama-api-admin-java/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Admin
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../observacion-kpi-sincronizacion/pachamama-admin-web/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Admin Web
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_9_3" id="__nav_9_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [26-27 Mar 2026] Trazabilidad de Versión de App
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    [26-27 Mar 2026] Trazabilidad de Versión de App
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../trazabilidad-app-version/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Resumen Integral
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../trazabilidad-app-version/pachamama-mobile-android/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mobile Android
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../trazabilidad-app-version/pachamama-api-sync-java/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Sync
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../trazabilidad-app-version/pachamama-api-admin-java/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Admin
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../trazabilidad-app-version/pachamama-admin-web/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Admin Web
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_9_4" id="__nav_9_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [30 Mar - 8 Abr 2026] Consentimiento Informado Cifrado
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_9_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    [30 Mar - 8 Abr 2026] Consentimiento Informado Cifrado
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Resumen Integral
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mobile Android
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mobile Android
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#v120-2026-04-08" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [v1.2.0] — 2026-04-08
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="[v1.2.0] — 2026-04-08">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#novedades-consentimiento-informado-personalizado-y-cifrado" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Novedades — Consentimiento informado personalizado y cifrado
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Novedades — Consentimiento informado personalizado y cifrado">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nuevo-endpoint-de-consentimiento-cifrado" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Nuevo endpoint de consentimiento cifrado
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#modelo-legaldocumentrequest" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Modelo — LegalDocumentRequest
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#onboardingrepository-getlegaldocumentencrypted" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        OnboardingRepository — getLegalDocumentEncrypted
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#consentviewmodel-carga-cifrada" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ConsentViewModel — carga cifrada
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#consentscreen-carga-al-entrar-a-la-pantalla" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ConsentScreen — carga al entrar a la pantalla
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v110-2026-03-30" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [v1.1.0] — 2026-03-30
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="[v1.1.0] — 2026-03-30">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#novedades-gestion-de-errores-en-registro-y-sincronizacion-de-actividades" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Novedades — Gestión de errores en registro y sincronización de actividades
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Novedades — Gestión de errores en registro y sincronización de actividades">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#base-de-datos-migracion-v8-v9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Base de datos — Migración v8 → v9
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#activitiesrepository-politica-de-reintentos-y-validacion-de-integridad" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ActivitiesRepository — Política de reintentos y validación de integridad
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#photorepository-correccion-de-fotos-huerfanas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PhotoRepository — Corrección de fotos huérfanas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ui-indicadores-de-error-en-actividades" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UI — Indicadores de error en actividades
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#codigos-de-error" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Códigos de error
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#estrategia-online-first-para-formularios-y-geojson" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Estrategia Online-First para Formularios y GeoJSON
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Estrategia Online-First para Formularios y GeoJSON">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#formsrepository-y-geojsonrepository" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        FormsRepository y GeoJsonRepository
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#versiones" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Versiones
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#integracion-envio-de-errores-a-la-api-de-notificaciones-apievents-logging" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Integración — Envío de Errores a la API de Notificaciones (/api/events-logging)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Integración — Envío de Errores a la API de Notificaciones (/api/events-logging)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#resumen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resumen
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#arquitectura-de-la-integracion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Arquitectura de la Integración
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#clases-involucradas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Clases Involucradas
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Clases Involucradas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#eventloggingservice-interfaz-retrofit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        EventLoggingService — Interfaz Retrofit
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#eventloggingrepository-orquestador" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        EventLoggingRepository — Orquestador
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#eventlogentity-eventlogdao-almacenamiento-offline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        EventLogEntity / EventLogDao — Almacenamiento Offline
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#eventlogsyncworker-reintentos-periodicos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        EventLogSyncWorker — Reintentos Periódicos
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#puntos-de-integracion-en-el-codigo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Puntos de Integración en el Código
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejemplo-de-payload-enviado" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ejemplo de Payload Enviado
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pachamama-api-admin-java/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Admin
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pachamama-api-notifications-java/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Notifications
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_9_5" id="__nav_9_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [8-9 Abr 2026] Permisos Requeridos (Android)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    [8-9 Abr 2026] Permisos Requeridos (Android)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../permisos-requeridos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Resumen Integral
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../permisos-requeridos/pachamama-mobile-android/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mobile Android
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#v120-2026-04-08" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [v1.2.0] — 2026-04-08
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="[v1.2.0] — 2026-04-08">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#novedades-consentimiento-informado-personalizado-y-cifrado" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Novedades — Consentimiento informado personalizado y cifrado
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Novedades — Consentimiento informado personalizado y cifrado">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nuevo-endpoint-de-consentimiento-cifrado" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Nuevo endpoint de consentimiento cifrado
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#modelo-legaldocumentrequest" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Modelo — LegalDocumentRequest
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#onboardingrepository-getlegaldocumentencrypted" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        OnboardingRepository — getLegalDocumentEncrypted
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#consentviewmodel-carga-cifrada" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ConsentViewModel — carga cifrada
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#consentscreen-carga-al-entrar-a-la-pantalla" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ConsentScreen — carga al entrar a la pantalla
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v110-2026-03-30" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [v1.1.0] — 2026-03-30
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="[v1.1.0] — 2026-03-30">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#novedades-gestion-de-errores-en-registro-y-sincronizacion-de-actividades" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Novedades — Gestión de errores en registro y sincronización de actividades
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Novedades — Gestión de errores en registro y sincronización de actividades">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#base-de-datos-migracion-v8-v9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Base de datos — Migración v8 → v9
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#activitiesrepository-politica-de-reintentos-y-validacion-de-integridad" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ActivitiesRepository — Política de reintentos y validación de integridad
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#photorepository-correccion-de-fotos-huerfanas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PhotoRepository — Corrección de fotos huérfanas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ui-indicadores-de-error-en-actividades" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UI — Indicadores de error en actividades
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#codigos-de-error" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Códigos de error
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#estrategia-online-first-para-formularios-y-geojson" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Estrategia Online-First para Formularios y GeoJSON
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Estrategia Online-First para Formularios y GeoJSON">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#formsrepository-y-geojsonrepository" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        FormsRepository y GeoJsonRepository
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#versiones" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Versiones
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#integracion-envio-de-errores-a-la-api-de-notificaciones-apievents-logging" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Integración — Envío de Errores a la API de Notificaciones (/api/events-logging)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Integración — Envío de Errores a la API de Notificaciones (/api/events-logging)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#resumen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resumen
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#arquitectura-de-la-integracion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Arquitectura de la Integración
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#clases-involucradas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Clases Involucradas
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Clases Involucradas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#eventloggingservice-interfaz-retrofit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        EventLoggingService — Interfaz Retrofit
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#eventloggingrepository-orquestador" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        EventLoggingRepository — Orquestador
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#eventlogentity-eventlogdao-almacenamiento-offline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        EventLogEntity / EventLogDao — Almacenamiento Offline
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#eventlogsyncworker-reintentos-periodicos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        EventLogSyncWorker — Reintentos Periódicos
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#puntos-de-integracion-en-el-codigo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Puntos de Integración en el Código
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejemplo-de-payload-enviado" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ejemplo de Payload Enviado
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="changelog-pachamama-mobile-android">Changelog — Pachamama Mobile Android</h1>
+<p><strong>Versiones:</strong> <code>v1.1.0</code> → <code>v1.2.0</code><br />
+<strong>Cambio Relacionado:</strong> Consentimiento Informado Cifrado y Gestión de Errores en Sincronización<br />
+<strong>Período:</strong> 30 de Marzo – 8 de Abril 2026</p>
+<hr />
+<h2 id="v120-2026-04-08">[v1.2.0] — 2026-04-08</h2>
+<h3 id="novedades-consentimiento-informado-personalizado-y-cifrado">Novedades — Consentimiento informado personalizado y cifrado</h3>
+<h4 id="nuevo-endpoint-de-consentimiento-cifrado">Nuevo endpoint de consentimiento cifrado</h4>
+<ul>
+<li>Se integró el endpoint <code>POST /api/v1/collectors/onboarding/legal-documents/encrypted</code>
+  como mecanismo principal para obtener el consentimiento informado durante el onboarding.</li>
+<li>El documento devuelto contiene los parámetros <code>[[...]]</code> reemplazados por el backend
+  con información real del recolector y de la empresa cliente asociada al token de invitación:
+  <code>[[NOMBRE_RECOLECTOR]]</code>, <code>[[DNI_RECOLECTOR]]</code>, <code>[[RAZON_SOCIAL_CLIENTE]]</code>,
+  <code>[[RUC_CLIENTE]]</code>, <code>[[DIRECCION_CLIENTE]]</code>, <code>[[VERSION]]</code>, etc.</li>
+<li>Mecanismo de cifrado: <strong>RSA-OAEP + AES-256-GCM</strong> con la misma clave pública cacheada
+  que se usa en <code>submitOnboardingEncrypted</code>.</li>
+</ul>
+<h4 id="modelo-legaldocumentrequest">Modelo — <code>LegalDocumentRequest</code></h4>
+<ul>
+<li>Añadido <code>data class LegalDocumentRequest</code> en <code>OnboardingModels.kt</code>.</li>
+<li>Campos: <code>type</code>, <code>invitationToken</code>, <code>invitationType</code>, <code>versionApp</code>, <code>collectorName</code>, <code>dni</code>.</li>
+<li>Los campos son opcionales excepto <code>type</code>; la validación de campos requeridos para
+  <code>type = "consent"</code> se delega al backend.</li>
+</ul>
+<h4 id="onboardingrepository-getlegaldocumentencrypted"><code>OnboardingRepository</code> — <code>getLegalDocumentEncrypted</code></h4>
+<ul>
+<li>Nuevo método <code>getLegalDocumentEncrypted(type, invitationToken, invitationType, collectorName, dni)</code>.</li>
+<li>Reutiliza <code>getOnboardingPublicKey()</code> (con caché de sesión) y <code>encryptOnboardingPayload()</code>
+  exactamente igual que <code>submitOnboarding</code>.</li>
+<li>Aplica el mismo formateo del token <code>SHORT_CODE</code> (guion en punto medio).</li>
+<li>Si el endpoint cifrado falla, hace <strong>fallback automático</strong> al endpoint GET sin cifrar.</li>
+</ul>
+<h4 id="consentviewmodel-carga-cifrada"><code>ConsentViewModel</code> — carga cifrada</h4>
+<ul>
+<li>Eliminado el bloque <code>init { loadInformedConsent() }</code> que auto-cargaba el consentimiento
+  genérico sin contexto del recolector.</li>
+<li>Nuevo método <code>loadInformedConsentEncrypted(accessCode, accessType, firstName, lastName, dni)</code>:</li>
+<li>Mapea <code>accessType</code> → <code>invitationType</code> (<code>"invitation_code"</code> → <code>"SHORT_CODE"</code>)</li>
+<li>Normaliza el nombre del recolector a mayúsculas (<code>collectorName</code>)</li>
+<li>Implementa fallback a <code>loadInformedConsent()</code> si el cifrado falla.</li>
+<li>Se mantiene <code>loadInformedConsent()</code> como fallback interno y para tipos sin contexto
+  (<code>privacy</code>, <code>terms</code>).</li>
+</ul>
+<h4 id="consentscreen-carga-al-entrar-a-la-pantalla"><code>ConsentScreen</code> — carga al entrar a la pantalla</h4>
+<ul>
+<li><code>LaunchedEffect(Unit)</code>: lee <code>accessCode</code> / <code>accessType</code> desde <code>OnboardingPreferences</code>
+  y llama a <code>loadInformedConsentEncrypted</code> con los parámetros del recolector.</li>
+<li>Si <code>accessCode</code> está vacío hace fallback al método sin cifrar.</li>
+<li>El contenido del documento se abre en un <code>Dialog</code> de pantalla completa con:</li>
+<li>Barra superior con botón de cierre (×)</li>
+<li>Renderizado completo en Markdown con <code>Markwon</code> (tablas, tachado, listas, HTML, links)</li>
+<li>Indicador de carga y botón "Reintentar" que respeta el flujo cifrado.</li>
+</ul>
+<blockquote>
+<p><strong>Importante:</strong> el consentimiento personalizado se genera sobre la marcha a partir del token
+de invitación activo. Solo al completar el onboarding (firma + envío) se crea el registro
+del recolector en el backend.</p>
+</blockquote>
+<hr />
+<h2 id="v110-2026-03-30">[v1.1.0] — 2026-03-30</h2>
+<h3 id="novedades-gestion-de-errores-en-registro-y-sincronizacion-de-actividades">Novedades — Gestión de errores en registro y sincronización de actividades</h3>
+<h4 id="base-de-datos-migracion-v8-v9">Base de datos — Migración v8 → v9</h4>
+<ul>
+<li>Añadida columna <code>activityId</code> a la tabla <code>photos</code> para vincular directamente cada foto
+  con su actividad correspondiente, además del <code>fieldKey</code>.</li>
+<li>Las entidades <code>ActivityEntity</code> almacenan <code>syncRetryCount</code> y <code>lastError</code> para controlar
+  el ciclo de vida de sincronización.</li>
+</ul>
+<h4 id="activitiesrepository-politica-de-reintentos-y-validacion-de-integridad"><code>ActivitiesRepository</code> — Política de reintentos y validación de integridad</h4>
+<ul>
+<li>Actividades con <strong>3 o más intentos fallidos</strong> se excluyen de las sincronizaciones automáticas,
+  evitando ciclos infinitos de reintentos.</li>
+<li>El contador <code>syncRetryCount</code> se incrementa con cada fallo, guardando <code>errorCode</code>,
+  <code>errorMessage</code> y <code>stackTrace</code>.</li>
+<li>Antes de enviar al Service Bus, se valida que todos los archivos multimedia referenciados
+  existan con sus URLs remotas.</li>
+<li>Implementada actualización masiva (<code>UPDATE</code>) para vincular fotos a actividades.</li>
+</ul>
+<h4 id="photorepository-correccion-de-fotos-huerfanas"><code>PhotoRepository</code> — Corrección de fotos huérfanas</h4>
+<ul>
+<li>Corregida la lógica que dejaba fotos temporales sin vincular a ninguna actividad.</li>
+</ul>
+<h4 id="ui-indicadores-de-error-en-actividades">UI — Indicadores de error en actividades</h4>
+<ul>
+<li><strong>Lista de actividades (<code>TasksScreens</code>):</strong> tarjetas con error muestran mensaje y contador
+  de intentos (p. ej. "2 / 3") con color rojo.</li>
+<li><strong>Detalle de actividad (<code>ActivityDetailScreen</code>):</strong> tarjeta roja con detalle técnico del error
+  y sugerencias de acción al alcanzar el límite de reintentos.</li>
+<li>Colores de estado: 🔴 Error · 🟡 Pendiente · 🟢 Enviado.</li>
+</ul>
+<h4 id="codigos-de-error">Códigos de error</h4>
+<table>
+<thead>
+<tr>
+<th>Código</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>FILE_NOT_FOUND</code></td>
+<td>El archivo de la foto no existe en el dispositivo</td>
+</tr>
+<tr>
+<td><code>PAYLOAD_VALIDATION_ERROR</code></td>
+<td>Inconsistencia entre fotos del formulario y URLs generadas</td>
+</tr>
+<tr>
+<td><code>UPLOAD_ERROR</code></td>
+<td>Fallo al subir imagen a Azure Blob Storage</td>
+</tr>
+<tr>
+<td><code>NETWORK_ERROR</code></td>
+<td>No se pudo conectar con el Service Bus</td>
+</tr>
+</tbody>
+</table>
+<h3 id="estrategia-online-first-para-formularios-y-geojson">Estrategia Online-First para Formularios y GeoJSON</h3>
+<h4 id="formsrepository-y-geojsonrepository"><code>FormsRepository</code> y <code>GeoJsonRepository</code></h4>
+<ul>
+<li>Estrategia <strong>Online-First</strong>: con conexión, siempre se obtienen datos frescos del servidor
+  y se actualiza el caché local; sin conexión, se usa el caché automáticamente.</li>
+<li>Soporte para <code>forceRefresh = true</code>.</li>
+<li>Fallback transparente a caché local si el servidor no está disponible.</li>
+<li>Compatible con API 21+ (Android 5.0+).</li>
+<li>Los ViewModels existentes no requirieron cambios.</li>
+</ul>
+<hr />
+<h2 id="versiones">Versiones</h2>
+<table>
+<thead>
+<tr>
+<th>Campo</th>
+<th>Valor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Versión base</td>
+<td><code>v1.0.2</code></td>
+</tr>
+<tr>
+<td>Versión intermedia</td>
+<td><code>v1.1.0</code></td>
+</tr>
+<tr>
+<td>Versión final</td>
+<td><code>v1.2.0</code></td>
+</tr>
+<tr>
+<td>Tipo de cambio</td>
+<td>Funcionalidad nueva + correcciones</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="integracion-envio-de-errores-a-la-api-de-notificaciones-apievents-logging">Integración — Envío de Errores a la API de Notificaciones (<code>/api/events-logging</code>)</h2>
+<h3 id="resumen">Resumen</h3>
+<p>La app Android envía eventos de fallo a <strong><code>pachamama-api-notifications-java</code></strong>
+(<code>POST /api/events-logging</code>) con una estrategia <strong>Online-First con fallback offline</strong>: si hay conexión
+el log se envía inmediatamente; si no la hay, se persiste localmente en Room y se reintenta de forma
+automática cuando se recupera la red.</p>
+<p><strong>Endpoint:</strong>
+<div class="highlight"><pre><span></span><code>POST https://pachamama-api-notif-java-6245560b7544.herokuapp.com/api/events-logging
+Content-Type: application/json
+</code></pre></div></p>
+<hr />
+<h3 id="arquitectura-de-la-integracion">Arquitectura de la Integración</h3>
+<div class="highlight"><pre><span></span><code>┌─────────────────────────────────────┐
+│  FormViewModel / ActivitiesRepo     │
+│  (puntos de error)                  │
+└────────────────┬────────────────────┘
+                 │ logError(tag, process, message, statusCode, metadata)
+                 ▼
+┌─────────────────────────────────────┐
+│  EventLoggingRepository             │  ← @Singleton, inyectado por Hilt
+│  (capa de orquestación)             │
+└──────┬──────────────────┬───────────┘
+       │ Online            │ Offline / Error HTTP
+       ▼                   ▼
+┌─────────────┐   ┌────────────────────────┐
+│ POST        │   │  Room DB               │
+│ /api/events │   │  tabla: event_logs     │
+│ -logging    │   │  (EventLogEntity)      │
+└─────────────┘   └────────────┬───────────┘
+                               │ Cada 15 min (red disponible)
+                               ▼
+                  ┌────────────────────────┐
+                  │  EventLogSyncWorker    │
+                  │  (WorkManager)         │
+                  │  → syncOfflineLogs()   │
+                  └────────────────────────┘
+</code></pre></div>
+<hr />
+<h3 id="clases-involucradas">Clases Involucradas</h3>
+<h4 id="eventloggingservice-interfaz-retrofit"><code>EventLoggingService</code> — Interfaz Retrofit</h4>
+<div class="highlight"><pre><span></span><code><span class="c1">// data/logging/EventLoggingService.kt</span>
+<span class="kd">interface</span><span class="w"> </span><span class="nc">EventLoggingService</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nd">@POST</span><span class="p">(</span><span class="s">&quot;api/events-logging&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">suspend</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">logEvent</span><span class="p">(</span><span class="nd">@Body</span><span class="w"> </span><span class="n">request</span><span class="p">:</span><span class="w"> </span><span class="n">EventLogRequest</span><span class="p">):</span><span class="w"> </span><span class="n">Response</span><span class="o">&lt;</span><span class="kt">Unit</span><span class="o">&gt;</span>
+<span class="p">}</span>
+</code></pre></div>
+<ul>
+<li>Instanciada vía <code>NetworkModule</code> con el cliente <code>LoggingRetrofit</code>.</li>
+<li>Sin autenticación adicional.</li>
+</ul>
+<h4 id="eventloggingrepository-orquestador"><code>EventLoggingRepository</code> — Orquestador</h4>
+<div class="highlight"><pre><span></span><code><span class="c1">// data/logging/EventLoggingRepository.kt</span>
+<span class="kd">fun</span><span class="w"> </span><span class="nf">logError</span><span class="p">(</span>
+<span class="w">    </span><span class="n">tag</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span>
+<span class="w">    </span><span class="n">process</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span>
+<span class="w">    </span><span class="n">message</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span>
+<span class="w">    </span><span class="n">statusCode</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span>
+<span class="w">    </span><span class="n">startTime</span><span class="p">:</span><span class="w"> </span><span class="kt">Long</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">System</span><span class="p">.</span><span class="na">currentTimeMillis</span><span class="p">(),</span>
+<span class="w">    </span><span class="n">endTime</span><span class="p">:</span><span class="w"> </span><span class="kt">Long</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">System</span><span class="p">.</span><span class="na">currentTimeMillis</span><span class="p">(),</span>
+<span class="w">    </span><span class="n">metadata</span><span class="p">:</span><span class="w"> </span><span class="n">Map</span><span class="o">&lt;</span><span class="kt">String</span><span class="p">,</span><span class="w"> </span><span class="kt">Any</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">emptyMap</span><span class="p">()</span>
+<span class="p">)</span>
+</code></pre></div>
+<ul>
+<li><strong>Fire-and-forget</strong>: no bloquea la corrutina del caller.</li>
+<li>Auto-genera <code>traceId</code> (UUID), enriquece con <code>device</code> / <code>os</code> (Build.MODEL / Build.VERSION.RELEASE).</li>
+<li>Toma <code>userId</code>, <code>tenantId</code>, <code>projectId</code> desde <code>SessionPreferences</code>.</li>
+<li>Si el POST falla (red o HTTP) → <code>saveOfflineLog()</code> → INSERT en Room.</li>
+</ul>
+<h4 id="eventlogentity-eventlogdao-almacenamiento-offline"><code>EventLogEntity</code> / <code>EventLogDao</code> — Almacenamiento Offline</h4>
+<div class="highlight"><pre><span></span><code><span class="nd">@Entity</span><span class="p">(</span><span class="n">tableName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;event_logs&quot;</span><span class="p">)</span>
+<span class="kd">data</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">EventLogEntity</span><span class="p">(</span>
+<span class="w">    </span><span class="nd">@PrimaryKey</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">traceId</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">channel</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span><span class="w">         </span><span class="c1">// siempre &quot;app&quot;</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">channelVersion</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span><span class="w">  </span><span class="c1">// BuildConfig.VERSION_NAME</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">userId</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">tenantId</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">projectId</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">onboardingId</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span><span class="w">    </span><span class="c1">// mismo que userId</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">tag</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">process</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">startTime</span><span class="p">:</span><span class="w"> </span><span class="kt">Long</span><span class="p">,</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">endTime</span><span class="p">:</span><span class="w"> </span><span class="kt">Long</span><span class="p">,</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">level</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">message</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">statusCode</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">clientIp</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span><span class="w">        </span><span class="c1">// &quot;0.0.0.0&quot;</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">userAgent</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span><span class="w">       </span><span class="c1">// &quot;Android/{Build.VERSION.RELEASE}&quot;</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">environment</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span><span class="w">     </span><span class="c1">// &quot;prod&quot;</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">metadataString</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="w">   </span><span class="c1">// metadata serializada como JSON (Gson)</span>
+<span class="p">)</span>
+</code></pre></div>
+<h4 id="eventlogsyncworker-reintentos-periodicos"><code>EventLogSyncWorker</code> — Reintentos Periódicos</h4>
+<ul>
+<li>Ejecuta <code>syncOfflineLogs()</code> cada <strong>15 minutos</strong> cuando hay red disponible.</li>
+<li>Backoff exponencial de 10 minutos en caso de fallo del worker.</li>
+</ul>
+<hr />
+<h3 id="puntos-de-integracion-en-el-codigo">Puntos de Integración en el Código</h3>
+<table>
+<thead>
+<tr>
+<th>Clase</th>
+<th>Método</th>
+<th><code>statusCode</code></th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>FormViewModel</code></td>
+<td><code>saveAsPendingActivity</code></td>
+<td><code>CRITICAL_ERROR</code></td>
+<td>Error crítico al guardar actividad en Room</td>
+</tr>
+<tr>
+<td><code>ActivitiesRepository</code></td>
+<td><code>uploadMediaAndReplaceFormData</code></td>
+<td><code>FILE_NOT_FOUND</code></td>
+<td>El archivo de foto no existe en el dispositivo</td>
+</tr>
+<tr>
+<td><code>ActivitiesRepository</code></td>
+<td><code>uploadMediaAndReplaceFormData</code></td>
+<td><code>UPLOAD_ERROR</code></td>
+<td>Fallo al subir imagen a Azure Blob Storage</td>
+</tr>
+<tr>
+<td><code>ActivitiesRepository</code></td>
+<td><code>syncPendingActivities</code></td>
+<td><code>FATAL_SYNC_ERROR</code></td>
+<td>Error de infraestructura al enviar al Service Bus</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="ejemplo-de-payload-enviado">Ejemplo de Payload Enviado</h3>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;traceId&quot;</span><span class="p">:</span><span class="w">        </span><span class="s2">&quot;550e8400-e29b-41d4-a716-446655440000&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;channel&quot;</span><span class="p">:</span><span class="w">        </span><span class="s2">&quot;app&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;channelVersion&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1.2.0&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;userId&quot;</span><span class="p">:</span><span class="w">         </span><span class="s2">&quot;collector-uuid&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;tenantId&quot;</span><span class="p">:</span><span class="w">       </span><span class="s2">&quot;company-uuid&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;projectId&quot;</span><span class="p">:</span><span class="w">      </span><span class="s2">&quot;project-uuid&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;onboardingId&quot;</span><span class="p">:</span><span class="w">   </span><span class="s2">&quot;collector-uuid&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;tag&quot;</span><span class="p">:</span><span class="w">            </span><span class="s2">&quot;ActivitiesRepository&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;process&quot;</span><span class="p">:</span><span class="w">        </span><span class="s2">&quot;uploadMediaAndReplaceFormData&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;startTime&quot;</span><span class="p">:</span><span class="w">      </span><span class="mi">1744120800000</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;endTime&quot;</span><span class="p">:</span><span class="w">        </span><span class="mi">1744120801500</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;level&quot;</span><span class="p">:</span><span class="w">          </span><span class="s2">&quot;ERROR&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w">        </span><span class="s2">&quot;Error en carga de archivos multimedia: file not found&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;statusCode&quot;</span><span class="p">:</span><span class="w">     </span><span class="s2">&quot;FILE_NOT_FOUND&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;clientIp&quot;</span><span class="p">:</span><span class="w">       </span><span class="s2">&quot;0.0.0.0&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;userAgent&quot;</span><span class="p">:</span><span class="w">      </span><span class="s2">&quot;Android/14&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;environment&quot;</span><span class="p">:</span><span class="w">    </span><span class="s2">&quot;prod&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;metadata&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;device&quot;</span><span class="p">:</span><span class="w">      </span><span class="s2">&quot;Pixel 7&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;os&quot;</span><span class="p">:</span><span class="w">          </span><span class="s2">&quot;14&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;activityId&quot;</span><span class="p">:</span><span class="w">  </span><span class="s2">&quot;act-uuid&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;errorTrace&quot;</span><span class="p">:</span><span class="w">  </span><span class="s2">&quot;java.io.FileNotFoundException: ...&quot;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../assets/javascripts/mermaid-zoom.js"></script>
+      
+    
+  </body>
+</html>
