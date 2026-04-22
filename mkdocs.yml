@@ -74,3 +74,9 @@ markdown_extensions:
         - name: mermaid
           class: mermaid
           format: !!python/name:pymdownx.superfences.fence_code_format
+
+extra_css:
+  - assets/stylesheets/mermaid-zoom.css
+
+extra_javascript:
+  - assets/javascripts/mermaid-zoom.js
