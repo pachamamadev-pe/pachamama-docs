@@ -1,0 +1,3633 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../ARQ-PACHAMAMA-AZURE-PROYECCION-COSTOS-20260421/">
+      
+      
+        <link rel="next" href="../AZURE-COSTOS-PACHAMAMA-DRIVERS-20260421/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Arquitectura de Escalamiento y Pricing — v1.0 - Documentación Pachamama</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="light-green">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#arquitectura-cloud-y-plan-de-escalamiento-azure-para-pachamama-saas" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Documentación Pachamama" class="md-header__button md-logo" aria-label="Documentación Pachamama" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Documentación Pachamama
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Arquitectura de Escalamiento y Pricing — v1.0
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Documentación Pachamama" class="md-nav__button md-logo" aria-label="Documentación Pachamama" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Documentación Pachamama
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inicio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ROADMAP-MIGRATION-PRD/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Roadmap Migración y Prd
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MVP-ARCHITECTURE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Arquitectura MVP (Pre-Pro)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Arquitecturas y Migración Azure
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Arquitecturas y Migración Azure
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ARQ-PACHAMAMA-AZURE-PROYECCION-COSTOS-20260421/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Brief de Proyeccion de Costos Azure
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Arquitectura de Escalamiento y Pricing — v1.0
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Arquitectura de Escalamiento y Pricing — v1.0
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#resumen-ejecutivo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resumen Ejecutivo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#supuestos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Supuestos
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#proyeccion-de-crecimiento-2026-2030" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Proyeccion de Crecimiento 2026-2030
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#curva-de-costo-escalado-de-referencia" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Curva de Costo Escalado de Referencia
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#diagrama-de-arquitectura" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagrama de Arquitectura
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Diagrama de Arquitectura">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#opcion-a-estandar-administrada" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Opcion A - Estandar Administrada
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opcion-b-escalable-intermedia" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Opcion B - Escalable Intermedia
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opcion-c-alta-disponibilidad-y-resiliencia" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Opcion C - Alta Disponibilidad y Resiliencia
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opciones-arquitectonicas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Opciones Arquitectonicas
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Opciones Arquitectonicas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#opcion-a-estandar-administrada_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Opcion A - Estandar Administrada
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opcion-b-escalable-intermedia_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Opcion B - Escalable Intermedia
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opcion-c-alta-disponibilidad-y-resiliencia_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Opcion C - Alta Disponibilidad y Resiliencia
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tabla-comparativa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tabla Comparativa
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#desglose-de-servicios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Desglose de Servicios
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fases-de-implementacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fases de Implementacion
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Fases de Implementacion">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hitos-de-revision-alineados-a-la-proyeccion-2026-2030" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hitos de Revision Alineados a la Proyeccion 2026-2030
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#refinamiento-aplicado-al-plan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Refinamiento Aplicado al Plan
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#roadmap-visual" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Roadmap Visual
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#riesgos-y-mitigaciones" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Riesgos y Mitigaciones
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recomendacion-final" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recomendacion Final
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#referencias" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Referencias
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../AZURE-COSTOS-PACHAMAMA-DRIVERS-20260421/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Anexo de Costos y Drivers Azure
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ARQ-PACHAMAMA-AZURE-FULL-20260410-v2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Migración Completa Azure — v2.0 (Oficial)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Infraestructura y Cloud
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Infraestructura y Cloud
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../infrastructure/heroku/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cuentas Heroku
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../infrastructure/vercel/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cuentas Vercel
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../infrastructure/azure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Plataforma Azure
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../infrastructure/railway/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    BD Railway
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../infrastructure/mongodb/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    BD MongoDB
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../infrastructure/redis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Caché Redis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../infrastructure/firebase/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Firebase
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../infrastructure/twilio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Comunicaciones y Meta
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reglas de Negocio y Seguridad
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Reglas de Negocio y Seguridad
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../roles-permisos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Roles y Permisos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Flujos Arquitectónicos
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Flujos Arquitectónicos
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../flujos/sincronizacion-offline/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sincronización Offline Android
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../flujos/trazabilidad-cqrs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trazabilidad y CQRS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../flujos/gestion-archivos-sas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Carga de Archivos (SAS)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../flujos/notificaciones-push/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Notificaciones Push
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Servicios
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Servicios
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_1" id="__nav_8_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Frontend
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Frontend
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../services/pachamama-web-landing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Web Landing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../services/pachamama-web-admin/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Web Admin
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../services/pachamama-mobile-android/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mobile App
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_2" id="__nav_8_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Backend (Java)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Backend (Java)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../services/pachamama-api-admin-java/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Admin
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../services/pachamama-api-sync-java/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Sync
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../services/pachamama-api-notifications-java/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Notificaciones
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../services/pachamama-api-trace-java/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Traceability
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_3" id="__nav_8_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Serverless (Azure)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Serverless (Azure)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../services/pachamama-func-sas-node/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Func SAS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../services/pachamama-func-trace-sync/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Func Traceability
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Gestión de Cambios
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Gestión de Cambios
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_9_1" id="__nav_9_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [10 Abr 2026] Validación de Conectividad y Sincronización
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    [10 Abr 2026] Validación de Conectividad y Sincronización
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../gestion-cambios/validacion-conectividad-sincronizacion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Resumen Integral
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../gestion-cambios/validacion-conectividad-sincronizacion/pachamama-mobile-android/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mobile Android
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_9_2" id="__nav_9_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [23-26 Mar 2026] Sincronización y KPIs
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    [23-26 Mar 2026] Sincronización y KPIs
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../gestion-cambios/observacion-kpi-sincronizacion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Resumen Integral
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../gestion-cambios/observacion-kpi-sincronizacion/pachamama-mobile-android/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mobile Android
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../gestion-cambios/observacion-kpi-sincronizacion/pachamama-api-sync-java/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Sync
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../gestion-cambios/observacion-kpi-sincronizacion/pachamama-api-admin-java/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Admin
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../gestion-cambios/observacion-kpi-sincronizacion/pachamama-admin-web/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Admin Web
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_9_3" id="__nav_9_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [26-27 Mar 2026] Trazabilidad de Versión de App
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    [26-27 Mar 2026] Trazabilidad de Versión de App
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../gestion-cambios/trazabilidad-app-version/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Resumen Integral
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../gestion-cambios/trazabilidad-app-version/pachamama-mobile-android/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mobile Android
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../gestion-cambios/trazabilidad-app-version/pachamama-api-sync-java/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Sync
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../gestion-cambios/trazabilidad-app-version/pachamama-api-admin-java/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Admin
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../gestion-cambios/trazabilidad-app-version/pachamama-admin-web/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Admin Web
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_9_4" id="__nav_9_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [30 Mar - 8 Abr 2026] Consentimiento Informado Cifrado
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    [30 Mar - 8 Abr 2026] Consentimiento Informado Cifrado
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../gestion-cambios/consentimiento-informado-cifrado/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Resumen Integral
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../gestion-cambios/consentimiento-informado-cifrado/pachamama-mobile-android/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mobile Android
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../gestion-cambios/consentimiento-informado-cifrado/pachamama-api-admin-java/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Admin
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../gestion-cambios/consentimiento-informado-cifrado/pachamama-api-notifications-java/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Notifications
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_9_5" id="__nav_9_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [8-9 Abr 2026] Permisos Requeridos (Android)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    [8-9 Abr 2026] Permisos Requeridos (Android)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../gestion-cambios/permisos-requeridos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Resumen Integral
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../gestion-cambios/permisos-requeridos/pachamama-mobile-android/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mobile Android
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#resumen-ejecutivo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resumen Ejecutivo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#supuestos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Supuestos
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#proyeccion-de-crecimiento-2026-2030" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Proyeccion de Crecimiento 2026-2030
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#curva-de-costo-escalado-de-referencia" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Curva de Costo Escalado de Referencia
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#diagrama-de-arquitectura" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagrama de Arquitectura
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Diagrama de Arquitectura">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#opcion-a-estandar-administrada" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Opcion A - Estandar Administrada
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opcion-b-escalable-intermedia" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Opcion B - Escalable Intermedia
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opcion-c-alta-disponibilidad-y-resiliencia" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Opcion C - Alta Disponibilidad y Resiliencia
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opciones-arquitectonicas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Opciones Arquitectonicas
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Opciones Arquitectonicas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#opcion-a-estandar-administrada_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Opcion A - Estandar Administrada
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opcion-b-escalable-intermedia_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Opcion B - Escalable Intermedia
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opcion-c-alta-disponibilidad-y-resiliencia_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Opcion C - Alta Disponibilidad y Resiliencia
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tabla-comparativa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tabla Comparativa
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#desglose-de-servicios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Desglose de Servicios
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fases-de-implementacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fases de Implementacion
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Fases de Implementacion">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hitos-de-revision-alineados-a-la-proyeccion-2026-2030" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hitos de Revision Alineados a la Proyeccion 2026-2030
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#refinamiento-aplicado-al-plan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Refinamiento Aplicado al Plan
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#roadmap-visual" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Roadmap Visual
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#riesgos-y-mitigaciones" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Riesgos y Mitigaciones
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recomendacion-final" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recomendacion Final
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#referencias" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Referencias
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="arquitectura-cloud-y-plan-de-escalamiento-azure-para-pachamama-saas">Arquitectura Cloud y Plan de Escalamiento Azure para Pachamama SaaS</h1>
+<p><strong>Proyecto:</strong> Pachamama SaaS<br />
+<strong>Fecha:</strong> 2026-04-21<br />
+<strong>Proveedor principal:</strong> Azure<br />
+<strong>Version:</strong> 1.2<br />
+<strong>Fuente base:</strong> Brief de Proyeccion de Costos Azure 2026-04-21<br />
+<strong>Preparado por:</strong> GitHub Copilot - Arquitecto Cloud Expert</p>
+<h2 id="resumen-ejecutivo">Resumen Ejecutivo</h2>
+<p>Pachamama necesita una arquitectura Azure que no solo soporte el crecimiento tecnico del producto, sino que permita explicar el costo cloud en terminos que negocio pueda conectar con sus ingresos. El brief inicial ya definio el problema central: distinguir costos fijos, escalables y por uso, y relacionarlos con clientes, comunidades, recolectores, actividades y evidencia multimedia. A esa base ahora se suma una proyeccion de negocio 2026-2030 que lleva la plataforma desde <strong>13 clientes y 7,800 recolectores en 2026</strong> hasta <strong>84 clientes y 46,800 recolectores en 2030</strong>.</p>
+<p>La recomendacion de esta revision es no saltar directamente a una arquitectura robusta de alto costo base. El mejor punto de partida es una <strong>Opcion A administrada y gobernable</strong>, apoyada en servicios PaaS y serverless, con instrumentacion desde el dia uno para medir los drivers reales de costo. Sobre esa base, se definen umbrales concretos para evolucionar a una <strong>Opcion B escalable</strong> y, solo cuando exista justificacion operativa o contractual, a una <strong>Opcion C resiliente</strong> con componentes de mayor costo fijo como Application Gateway WAF, AKS y Service Bus Premium.</p>
+<p>El hallazgo mas importante para negocio es que, con la informacion hoy disponible, el costo que mas facilmente puede conectarse a los ingresos no es el compute base, sino el crecimiento acumulado de <strong>Blob Storage, retencion, replicas y observabilidad</strong>. El compute base marca el piso de operacion, pero la retencion de multimedia y la necesidad de resiliencia son las variables que mas cambian la estructura economica cuando el negocio madura. Cuando se propaga esa logica al costo total de plataforma, el <strong>escenario base escalado</strong> pasa de <strong>USD 606.97/mes en 2026</strong> a <strong>USD 2,327.05/mes en 2030</strong>, lo que vuelve mas concreto el momento en que conviene permanecer en Opcion A o migrar hacia Opcion B/C.</p>
+<p>Esta version ya no funciona como brief. Funciona como <strong>entregable arquitectonico inicial</strong>, con opciones A/B/C, tabla comparativa, plan de implementacion, roadmap, riesgos y recomendacion final. El detalle numerico de drivers y formulas de costo se complementa en el anexo <a href="../AZURE-COSTOS-PACHAMAMA-DRIVERS-20260421/">AZURE-COSTOS-PACHAMAMA-DRIVERS-20260421.md</a>.</p>
+<h2 id="supuestos">Supuestos</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Supuesto</th>
+<th>Implicancia</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>La region primaria recomendada para produccion es <code>brazilsouth</code>.</td>
+<td>Favorece latencia regional para Peru/LATAM y concentra el costo en una sola region principal.</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Firebase Auth, FCM y Twilio permanecen como integraciones externas.</td>
+<td>La arquitectura Azure se enfoca en compute, datos, almacenamiento, mensajeria y gobierno.</td>
+</tr>
+<tr>
+<td>3</td>
+<td>El rango informado de 10 a 200 actividades por recolector por cliente se toma como unidad de observacion base para el modelo economico.</td>
+<td>Si luego negocio confirma que ese rango es diario o semanal, el costo variable debe escalarse por frecuencia.</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Cada actividad puede registrar entre 1 y 20 imagenes de menos de 1 MB y entre 1 y 5 videos de menos de 2 MB.</td>
+<td>Blob Storage es el principal driver variable de almacenamiento operativo.</td>
+</tr>
+<tr>
+<td>5</td>
+<td>El producto seguira operando bajo un modelo multi-tenant logico, no con infraestructura dedicada por cliente en la etapa inicial.</td>
+<td>Reduce costo base, pero obliga a mejor observabilidad y control de crecimiento por tenant.</td>
+</tr>
+<tr>
+<td>6</td>
+<td>El equipo necesita velocidad de salida y bajo peso operativo antes que complejidad de plataforma.</td>
+<td>Favorece Container Apps, PostgreSQL Flexible, Blob Storage y Service Bus antes que AKS.</td>
+</tr>
+<tr>
+<td>7</td>
+<td>La demanda real aun no tiene suficiente historia para justificar una arquitectura enterprise desde el dia uno.</td>
+<td>La evolucion debe activarse por umbrales medibles, no por intuicion.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="proyeccion-de-crecimiento-2026-2030">Proyeccion de Crecimiento 2026-2030</h2>
+<p>La proyeccion comercial recibida de negocio cambia el nivel de precision del plan: ya no se esta trabajando solo con supuestos abiertos, sino con una curva anual que permite asociar etapas de arquitectura a hitos concretos de crecimiento.</p>
+<table>
+<thead>
+<tr>
+<th>Anio</th>
+<th>Clientes</th>
+<th>Comunidades</th>
+<th>Recolectores</th>
+<th>Lotes activos</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2026</td>
+<td>13</td>
+<td>260</td>
+<td>7,800</td>
+<td>17,424</td>
+</tr>
+<tr>
+<td>2027</td>
+<td>23</td>
+<td>500</td>
+<td>15,000</td>
+<td>45,504</td>
+</tr>
+<tr>
+<td>2028</td>
+<td>40</td>
+<td>820</td>
+<td>24,600</td>
+<td>74,964</td>
+</tr>
+<tr>
+<td>2029</td>
+<td>61</td>
+<td>1,180</td>
+<td>35,400</td>
+<td>106,392</td>
+</tr>
+<tr>
+<td>2030</td>
+<td>84</td>
+<td>1,560</td>
+<td>46,800</td>
+<td>138,384</td>
+</tr>
+</tbody>
+</table>
+<p>Lecturas de arquitectura:</p>
+<ul>
+<li>la relacion de <strong>30 recolectores por comunidad</strong> se mantiene estable en toda la curva;</li>
+<li>los lotes activos crecen mas rapido que los clientes, lo que refuerza la necesidad de observabilidad, politicas de retencion y lifecycle desde la etapa inicial;</li>
+<li>la discusion sobre Opcion B y Opcion C ya puede anclarse a anios y magnitudes concretas, no solo a criterios abstractos.</li>
+</ul>
+<h2 id="curva-de-costo-escalado-de-referencia">Curva de Costo Escalado de Referencia</h2>
+<p>La siguiente tabla toma como referencia el anexo de costos y usa el <strong>escenario base con plataforma escalada</strong> para anclar las decisiones arquitectonicas a una curva economica verificable.</p>
+<table>
+<thead>
+<tr>
+<th>Anio</th>
+<th>Clientes</th>
+<th>Recolectores</th>
+<th>Lotes activos</th>
+<th>Costo mensual base escalado</th>
+<th>Costo anual base escalado</th>
+<th>Costo mensual medio por cliente</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2026</td>
+<td>13</td>
+<td>7,800</td>
+<td>17,424</td>
+<td>USD 606.97</td>
+<td>USD 7,283.59</td>
+<td>USD 46.69</td>
+</tr>
+<tr>
+<td>2027</td>
+<td>23</td>
+<td>15,000</td>
+<td>45,504</td>
+<td>USD 854.52</td>
+<td>USD 10,254.27</td>
+<td>USD 37.15</td>
+</tr>
+<tr>
+<td>2028</td>
+<td>40</td>
+<td>24,600</td>
+<td>74,964</td>
+<td>USD 1,402.16</td>
+<td>USD 16,825.89</td>
+<td>USD 35.05</td>
+</tr>
+<tr>
+<td>2029</td>
+<td>61</td>
+<td>35,400</td>
+<td>106,392</td>
+<td>USD 1,859.30</td>
+<td>USD 22,311.57</td>
+<td>USD 30.48</td>
+</tr>
+<tr>
+<td>2030</td>
+<td>84</td>
+<td>46,800</td>
+<td>138,384</td>
+<td>USD 2,327.05</td>
+<td>USD 27,924.56</td>
+<td>USD 27.70</td>
+</tr>
+</tbody>
+</table>
+<p>Lectura de decision:</p>
+<ul>
+<li>hasta 2027 el costo escalado sigue en una banda que favorece sostener <strong>Opcion A</strong> con buen gobierno y medicion;</li>
+<li>el salto proyectado de 2028 lleva el costo base escalado por encima de <strong>USD 1,400/mes</strong>, punto en el que <strong>Opcion B</strong> deja de ser una mejora opcional y pasa a ser una decision de eficiencia operativa y gobierno;</li>
+<li>a partir de 2029-2030 la plataforma entra en una banda donde la discusion sobre <strong>Opcion C</strong> ya no debe verse como hipotetica, sino como una decision condicionada por SLA, compliance y costo del riesgo.</li>
+</ul>
+<h2 id="diagrama-de-arquitectura">Diagrama de Arquitectura</h2>
+<h3 id="opcion-a-estandar-administrada">Opcion A - Estandar Administrada</h3>
+<pre class="mermaid"><code>flowchart LR
+    subgraph channels["Canales"]
+        direction TB
+        web["Admin y Landing"]
+        mobile["Android"]
+    end
+
+    subgraph managed["Opcion A Administrada"]
+        direction TB
+        subgraph appA["Capa de acceso y aplicacion"]
+            direction LR
+            front["Static Web Apps"] --&gt; api["Container Apps APIs"] --&gt; functions["Azure Functions"]
+        end
+        subgraph dataA["Datos y soporte"]
+            direction LR
+            pg[("PostgreSQL Flexible")]
+            cosmos[("Cosmos DB Mongo API")]
+            servicebus["Service Bus Standard"]
+            obs["App Insights y Logs"]
+            blob["Blob Storage Hot LRS"]
+        end
+    end
+
+    web --&gt; front
+    mobile --&gt; api
+    api --&gt; pg
+    api --&gt; cosmos
+    api --&gt; servicebus
+    api --&gt; obs
+    functions --&gt; blob
+    servicebus --&gt; cosmos</code></pre>
+<h3 id="opcion-b-escalable-intermedia">Opcion B - Escalable Intermedia</h3>
+<pre class="mermaid"><code>flowchart LR
+    subgraph channels["Canales"]
+        direction TB
+        web["Admin y Landing"]
+        mobile["Android"]
+    end
+
+    subgraph scalable["Opcion B Escalable"]
+        direction TB
+        subgraph accessB["Acceso y servicios"]
+            direction LR
+            front["Static Web Apps"] --&gt; apim["API Management"] --&gt; api["Container Apps por dominio"]
+        end
+        subgraph automationB["Procesamiento"]
+            direction LR
+            worker["Functions y jobs"]
+        end
+        subgraph dataB["Datos y gobierno"]
+            direction LR
+            pg[("PostgreSQL zonal")]
+            cosmos[("Read models")]
+            sb["Service Bus Standard"]
+            blob["Blob Hot y Cool"]
+            monitor["Monitor y logs"]
+        end
+    end
+
+    web --&gt; front
+    mobile --&gt; apim
+    api --&gt; pg
+    api --&gt; cosmos
+    api --&gt; sb
+    api --&gt; blob
+    api --&gt; monitor
+    sb --&gt; worker
+    worker --&gt; blob</code></pre>
+<h3 id="opcion-c-alta-disponibilidad-y-resiliencia">Opcion C - Alta Disponibilidad y Resiliencia</h3>
+<pre class="mermaid"><code>flowchart LR
+    subgraph channels["Canales"]
+        direction TB
+        web["Admin y Landing"]
+        mobile["Android"]
+    end
+
+    subgraph edge["Seguridad y exposicion"]
+        direction LR
+        agw["Application Gateway WAF"] --&gt; apim["API Management"]
+    end
+
+    subgraph resilient["Opcion C Resiliente"]
+        direction TB
+        aks["AKS"]
+        subgraph dataC["Datos y continuidad"]
+            direction LR
+            pg[("PostgreSQL HA y replicas")]
+            cosmos[("Read models y eventos")]
+            sb["Service Bus Premium"]
+            blob["Blob Storage ZRS o GRS"]
+            monitor["Monitor y SIEM"]
+        end
+    end
+
+    web --&gt; agw
+    mobile --&gt; agw
+    apim --&gt; aks
+    aks --&gt; pg
+    aks --&gt; cosmos
+    aks --&gt; sb
+    aks --&gt; blob
+    aks --&gt; monitor</code></pre>
+<h2 id="opciones-arquitectonicas">Opciones Arquitectonicas</h2>
+<h3 id="opcion-a-estandar-administrada_1">Opcion A - Estandar Administrada</h3>
+<p><strong>Descripcion</strong><br />
+Servicios PaaS y serverless con baja friccion operativa. Es la mejor opcion para iniciar la consolidacion Azure y medir drivers reales sin fijar una estructura de costo enterprise antes de tiempo.</p>
+<p><strong>Componentes clave</strong></p>
+<ul>
+<li>Azure Static Web Apps para admin y landing.</li>
+<li>Azure Container Apps para APIs Java o containerizadas.</li>
+<li>Azure Functions para tareas puntuales y flujos event-driven.</li>
+<li>PostgreSQL Flexible Server como base operativa.</li>
+<li>Blob Storage Hot LRS con lifecycle desde el inicio.</li>
+<li>Service Bus Standard para sincronizacion y eventos.</li>
+<li>App Insights + Log Analytics para trazabilidad tecnica.</li>
+</ul>
+<p><strong>Pros</strong></p>
+<ul>
+<li>Menor complejidad operacional.</li>
+<li>Time-to-market mas rapido.</li>
+<li>Permite medir el negocio antes de sobredimensionar infraestructura.</li>
+<li>Costos base razonables y componentes variables legibles.</li>
+</ul>
+<p><strong>Contras</strong></p>
+<ul>
+<li>Menor aislamiento y menor capacidad de personalizacion avanzada.</li>
+<li>La resiliencia depende mas del diseno y la operacion que de la plataforma.</li>
+<li>No es la mejor opcion si se exige SLA contractual alto o topologia zero-trust desde el inicio.</li>
+</ul>
+<p><strong>Complejidad operacional:</strong> Baja<br />
+<strong>Costo base mensual estimado:</strong> USD 250 a USD 450 + consumo variable<br />
+<strong>Banda de costo total de referencia:</strong> hasta ~USD 855/mes en escenario base escalado 2026-2027<br />
+<strong>Recomendado para:</strong> MVP comercial, primeras cohortes de clientes, captura de telemetria real y tramo 2026-2027.</p>
+<h3 id="opcion-b-escalable-intermedia_1">Opcion B - Escalable Intermedia</h3>
+<p><strong>Descripcion</strong><br />
+Mantiene un enfoque administrado, pero separa mejor dominios, introduce gobierno de APIs y acelera la lectura de negocio mediante lifecycle de Blob, observabilidad mas fuerte y mejores controles de crecimiento.</p>
+<p><strong>Componentes clave</strong></p>
+<ul>
+<li>Todo lo de Opcion A.</li>
+<li>API Management delante de APIs publicas.</li>
+<li>PostgreSQL con mayor capacidad, alta disponibilidad zonal y backups mejor gobernados.</li>
+<li>Blob Storage con politicas Hot/Cool y archivado controlado.</li>
+<li>Mayor segmentacion por dominio y colas.</li>
+</ul>
+<p><strong>Pros</strong></p>
+<ul>
+<li>Mejor gobierno tecnico y mejor control de exposicion.</li>
+<li>Mayor elasticidad sin saltar aun a AKS.</li>
+<li>Sigue siendo relativamente manejable para un equipo pequeno.</li>
+</ul>
+<p><strong>Contras</strong></p>
+<ul>
+<li>Mayor costo base.</li>
+<li>Requiere disciplina de observabilidad y administracion de APIs.</li>
+<li>Aumenta la cantidad de decisiones de plataforma a sostener.</li>
+</ul>
+<p><strong>Complejidad operacional:</strong> Media<br />
+<strong>Costo base mensual estimado:</strong> USD 450 a USD 900 + consumo variable<br />
+<strong>Banda de costo total de referencia:</strong> ~USD 1,402 a USD 1,859/mes en escenario base escalado 2028-2029<br />
+<strong>Recomendado para:</strong> crecimiento sostenido, mayor volumen de sincronizacion, gobierno por dominio y tramo 2028-2029.</p>
+<h3 id="opcion-c-alta-disponibilidad-y-resiliencia_1">Opcion C - Alta Disponibilidad y Resiliencia</h3>
+<p><strong>Descripcion</strong><br />
+Arquitectura para una etapa madura del producto. El objetivo no es reducir costo, sino reducir riesgo operacional, reforzar seguridad perimetral, aislar workloads y soportar compromisos mas altos de continuidad.</p>
+<p><strong>Componentes clave</strong></p>
+<ul>
+<li>AKS como plano de ejecucion principal.</li>
+<li>Application Gateway WAF y API Management.</li>
+<li>PostgreSQL con HA, replicas y DR mas formal.</li>
+<li>Service Bus Premium.</li>
+<li>Blob Storage con replicas mas robustas.</li>
+<li>Observabilidad reforzada y procesos formales de continuidad.</li>
+</ul>
+<p><strong>Pros</strong></p>
+<ul>
+<li>Mayor resiliencia y gobierno de red.</li>
+<li>Mejor encaje para cargas altas, compliance y operaciones 24x7.</li>
+<li>Permite separar dominios y equipos con mayor libertad.</li>
+</ul>
+<p><strong>Contras</strong></p>
+<ul>
+<li>Costo base significativamente mayor.</li>
+<li>Requiere madurez DevOps/SRE.</li>
+<li>Puede destruir margen si se activa antes de tener escala real o contratos que lo justifiquen.</li>
+</ul>
+<p><strong>Complejidad operacional:</strong> Alta<br />
+<strong>Costo base mensual estimado:</strong> USD 1,800 a USD 3,200 + consumo variable<br />
+<strong>Banda de costo total de referencia:</strong> desde ~USD 2,327/mes en escenario base escalado 2030, antes de sumar componentes enterprise<br />
+<strong>Recomendado para:</strong> etapa madura, SLA contractual alto, necesidad de WAF, HA reforzada, topologia enterprise y tramo 2029-2030+ cuando el riesgo lo justifique.</p>
+<h2 id="tabla-comparativa">Tabla Comparativa</h2>
+<table>
+<thead>
+<tr>
+<th>Criterio</th>
+<th>Opcion A</th>
+<th>Opcion B</th>
+<th>Opcion C</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Costo base mensual estimado</td>
+<td>USD 250 a 450</td>
+<td>USD 450 a 900</td>
+<td>USD 1,800 a 3,200</td>
+</tr>
+<tr>
+<td>Costo total base de referencia</td>
+<td>hasta ~USD 855/mes</td>
+<td>~USD 1,402 a 1,859/mes</td>
+<td>desde ~USD 2,327/mes</td>
+</tr>
+<tr>
+<td>Complejidad operacional</td>
+<td>Baja</td>
+<td>Media</td>
+<td>Alta</td>
+</tr>
+<tr>
+<td>Escalabilidad</td>
+<td>Media</td>
+<td>Alta</td>
+<td>Muy alta</td>
+</tr>
+<tr>
+<td>Time-to-market</td>
+<td>Rapido</td>
+<td>Medio</td>
+<td>Lento</td>
+</tr>
+<tr>
+<td>SLA estimado</td>
+<td>99.5% a 99.9%</td>
+<td>99.9%</td>
+<td>99.9%+</td>
+</tr>
+<tr>
+<td>Gobierno tecnico</td>
+<td>Bueno</td>
+<td>Muy bueno</td>
+<td>Alto</td>
+</tr>
+<tr>
+<td>Lectura de costos para negocio</td>
+<td>Alta</td>
+<td>Alta</td>
+<td>Media</td>
+</tr>
+<tr>
+<td>Recomendado para</td>
+<td>2026-2027, inicio y medicion</td>
+<td>2028-2029, crecimiento sostenido</td>
+<td>2029-2030+, madurez y resiliencia</td>
+</tr>
+</tbody>
+</table>
+<h2 id="desglose-de-servicios">Desglose de Servicios</h2>
+<table>
+<thead>
+<tr>
+<th>Servicio / Recurso</th>
+<th>Opciones</th>
+<th>Naturaleza del costo</th>
+<th>Referencia de precio</th>
+<th>Justificacion</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Azure Container Apps Standard</td>
+<td>A, B</td>
+<td>Semi-fijo + por uso</td>
+<td><code>vCPU activo 0.000024 USD/s</code>, <code>memoria activa 0.000003 USD/GiB-s</code>, <code>requests 0.4 USD/1M</code> en <code>brazilsouth</code></td>
+<td>Buen equilibrio entre elasticidad, gobierno y bajo peso operativo.</td>
+</tr>
+<tr>
+<td>PostgreSQL Flexible Server</td>
+<td>A, B</td>
+<td>Semi-fijo + variable por storage y backup</td>
+<td><code>2 vCore = 0.1532 USD/h</code> en <code>brazilsouth</code></td>
+<td>Da piso operativo claro y es facil de asociar al core transaccional.</td>
+</tr>
+<tr>
+<td>Blob Storage Hot LRS</td>
+<td>A, B</td>
+<td>Variable</td>
+<td><code>0.0489 USD/GB/mes</code> en <code>brazilsouth</code></td>
+<td>Es el principal costo que debe conectarse a evidencia multimedia y retencion.</td>
+</tr>
+<tr>
+<td>Blob Operations</td>
+<td>A, B</td>
+<td>Variable</td>
+<td><code>0.00728 USD/10K operaciones</code> en <code>brazilsouth</code></td>
+<td>Relevante cuando crecen uploads, lecturas y lifecycle.</td>
+</tr>
+<tr>
+<td>Service Bus Standard</td>
+<td>A, B</td>
+<td>Fijo base + variable</td>
+<td><code>10 USD/mes</code> base en <code>brazilsouth</code></td>
+<td>Desacopla sincronizacion y eventos sin costo base alto.</td>
+</tr>
+<tr>
+<td>API Management</td>
+<td>B, C</td>
+<td>Fijo / semi-fijo</td>
+<td>Validar en calculadora oficial</td>
+<td>Mejora gobierno, seguridad y exposicion de APIs.</td>
+</tr>
+<tr>
+<td>Application Gateway WAF</td>
+<td>C</td>
+<td>Fijo + capacidad</td>
+<td><code>0.4 USD/h</code> fijo + <code>0.008 USD/h</code> por capacidad en <code>brazilsouth</code></td>
+<td>Solo se justifica cuando la capa perimetral y WAF agregan valor real.</td>
+</tr>
+<tr>
+<td>AKS Standard + Uptime SLA</td>
+<td>C</td>
+<td>Fijo alto</td>
+<td><code>0.6 USD/h</code> + <code>0.1 USD/h</code> en <code>brazilsouth</code></td>
+<td>Conviene solo en etapa madura o con requisitos enterprise.</td>
+</tr>
+<tr>
+<td>Service Bus Premium</td>
+<td>C</td>
+<td>Fijo alto</td>
+<td><code>0.9275 USD/h</code> por Messaging Unit en <code>brazilsouth</code></td>
+<td>Mejora aislamiento, pero eleva fuerte el piso mensual.</td>
+</tr>
+<tr>
+<td>Azure Cache for Redis</td>
+<td>A, B, C</td>
+<td>Semi-fijo</td>
+<td>Precio no disponible via API; validar en calculadora</td>
+<td>Util para performance, pero no debe explicar por si solo el pricing del cliente.</td>
+</tr>
+<tr>
+<td>App Insights / Log Analytics</td>
+<td>A, B, C</td>
+<td>Variable por ingestion y retencion</td>
+<td>Validar en calculadora</td>
+<td>Debe gobernarse para que la observabilidad no se vuelva una fuga de margen.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="fases-de-implementacion">Fases de Implementacion</h2>
+<table>
+<thead>
+<tr>
+<th>Fase</th>
+<th>Objetivo</th>
+<th>Entregables</th>
+<th>Duracion sugerida</th>
+<th>Criterio de salida</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Fase 1 - Diseno y baseline</td>
+<td>Confirmar supuestos, region, drivers y unidad economica</td>
+<td>documento formal, formulas de costo, umbrales de evolucion</td>
+<td>2 semanas</td>
+<td>negocio valida drivers y equipo valida opcion objetivo</td>
+</tr>
+<tr>
+<td>Fase 2 - Fundacion</td>
+<td>Dejar gobierno y medicion listos desde el inicio</td>
+<td>observabilidad, naming, lifecycle de Blob, tableros por tenant</td>
+<td>2 a 3 semanas</td>
+<td>costo y crecimiento se pueden medir por cliente y por driver</td>
+</tr>
+<tr>
+<td>Fase 3 - Implementacion core</td>
+<td>Desplegar Opcion A y estabilizar la operacion</td>
+<td>compute, base de datos, storage, mensajeria, pipelines</td>
+<td>4 a 6 semanas</td>
+<td>plataforma corre con trazabilidad operativa y sin fugas obvias de costo</td>
+</tr>
+<tr>
+<td>Fase 4 - Revision y evolucion</td>
+<td>Evaluar paso a Opcion B o C con evidencia</td>
+<td>informe trimestral de costo, performance y riesgo</td>
+<td>continua</td>
+<td>la evolucion se decide por umbrales, no por percepcion</td>
+</tr>
+</tbody>
+</table>
+<h3 id="hitos-de-revision-alineados-a-la-proyeccion-2026-2030">Hitos de Revision Alineados a la Proyeccion 2026-2030</h3>
+<table>
+<thead>
+<tr>
+<th>Hito</th>
+<th>Magnitud proyectada</th>
+<th>Lectura recomendada</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cierre 2026</td>
+<td>13 clientes, 260 comunidades, 7,800 recolectores, 17,424 lotes activos</td>
+<td>consolidar Opcion A y validar medicion por tenant con referencia de ~USD 606.97/mes en escenario base escalado</td>
+</tr>
+<tr>
+<td>Cierre 2027</td>
+<td>23 clientes, 500 comunidades, 15,000 recolectores, 45,504 lotes activos</td>
+<td>revisar sizing de Opcion A y gobierno de Blob, logs y APIs con referencia de ~USD 854.52/mes</td>
+</tr>
+<tr>
+<td>Cierre 2028</td>
+<td>40 clientes, 820 comunidades, 24,600 recolectores, 74,964 lotes activos</td>
+<td>punto formal de evaluacion para activar elementos de Opcion B con referencia de ~USD 1,402.16/mes</td>
+</tr>
+<tr>
+<td>Cierre 2029</td>
+<td>61 clientes, 1,180 comunidades, 35,400 recolectores, 106,392 lotes activos</td>
+<td>decidir si Opcion B sigue siendo suficiente o si algun componente de Opcion C ya se justifica; referencia ~USD 1,859.30/mes</td>
+</tr>
+<tr>
+<td>Cierre 2030</td>
+<td>84 clientes, 1,560 comunidades, 46,800 recolectores, 138,384 lotes activos</td>
+<td>evaluar Opcion C solo si la exigencia de SLA, riesgo o compliance la vuelve rentable; referencia ~USD 2,327.05/mes</td>
+</tr>
+</tbody>
+</table>
+<h3 id="refinamiento-aplicado-al-plan">Refinamiento Aplicado al Plan</h3>
+<p>El plan original del brief fue afinado en cuatro puntos:</p>
+<ol>
+<li>La arquitectura robusta deja de verse como destino inmediato y pasa a ser una opcion condicionada por umbrales.</li>
+<li>La estructura economica se separa en piso operativo, crecimiento por datos y costo de resiliencia.</li>
+<li>Blob lifecycle, retencion y observabilidad pasan a ser decisiones de fundacion, no tareas posteriores.</li>
+<li>El punto de control para decidir Opcion B o C se formaliza como una fase recurrente de revision.</li>
+</ol>
+<h2 id="roadmap-visual">Roadmap Visual</h2>
+<pre class="mermaid"><code>gantt
+    title Roadmap de evolucion Azure Pachamama
+    dateFormat YYYY-MM-DD
+    excludes weekends
+
+    section Diseno
+    Baseline y supuestos            :done, base, 2026-06-01, 10d
+    Arquitectura y costos refinados :after base, 10d
+
+    section Fundacion
+    Observabilidad y gobierno       :foundation, after base, 15d
+    Blob lifecycle y retencion      :after foundation, 8d
+
+    section Implementacion
+    Opcion A - rollout controlado   :corea, after foundation, 20d
+    Instrumentacion de drivers      :after corea, 10d
+
+    section Decision
+    Revision de umbrales B y C      :review, after corea, 10d
+    Hito de decision                :milestone, decision, after review, 0d</code></pre>
+<h2 id="riesgos-y-mitigaciones">Riesgos y Mitigaciones</h2>
+<table>
+<thead>
+<tr>
+<th>Riesgo</th>
+<th>Impacto</th>
+<th>Mitigacion</th>
+<th>Trigger de control</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Activar Opcion C demasiado pronto</td>
+<td>Destruye margen por alto costo fijo</td>
+<td>Mantener Opcion A como baseline y revisar umbrales trimestralmente</td>
+<td>costo base por cliente supera el margen objetivo</td>
+</tr>
+<tr>
+<td>Retener multimedia en Hot Storage durante anos</td>
+<td>Crecimiento silencioso del costo acumulado</td>
+<td>Definir lifecycle Hot/Cool/Archive desde fundacion</td>
+<td>crecimiento sostenido de GB retenidos por tenant</td>
+</tr>
+<tr>
+<td>Observabilidad sin gobierno</td>
+<td>Log Analytics puede crecer mas rapido que el core</td>
+<td>politicas de retencion, filtros, muestreo y limpieza de payloads pesados</td>
+<td>ingestion mensual superior a lo presupuestado</td>
+</tr>
+<tr>
+<td>No distinguir frecuencia real del rango de actividades</td>
+<td>Sub o sobreestimacion del costo variable</td>
+<td>confirmar si el rango informado es diario, semanal o mensual</td>
+<td>desviacion entre costo esperado y costo real</td>
+</tr>
+<tr>
+<td>Usar AKS sin madurez DevOps</td>
+<td>Riesgo tecnico y economico simultaneo</td>
+<td>posponer AKS hasta tener necesidad probada y capacidad operativa</td>
+<td>incidentes repetidos o necesidad contractual de mayor resiliencia</td>
+</tr>
+</tbody>
+</table>
+<h2 id="recomendacion-final">Recomendacion Final</h2>
+<p>La recomendacion es <strong>implementar Opcion A como arquitectura base</strong> y usar el anexo de costos para instrumentar el modelo economico por driver. Esta opcion entrega el mejor equilibrio entre costo, gobernabilidad y velocidad, y permite responder la principal necesidad de negocio: entender que parte del costo corresponde al piso operativo y que parte crece junto con clientes, recolectores, actividades y multimedia.</p>
+<p>La evolucion a <strong>Opcion B</strong> debe considerarse cuando se observe al menos una combinacion de estos umbrales:</p>
+<ul>
+<li>acercamiento al tramo proyectado de <strong>2028</strong>: alrededor de 40 clientes, 820 comunidades y 24,600 recolectores;</li>
+<li>costo total base de referencia acercandose o superando la banda de <strong>USD 1,400/mes</strong> en el escenario base escalado;</li>
+<li>crecimiento sostenido de clientes y recolectores durante dos o tres ciclos de medicion;</li>
+<li>necesidad de API governance formal o mayor control de exposicion;</li>
+<li>crecimiento de Blob Storage o logs que justifique lifecycle mas sofisticado y dominios mas separados;</li>
+<li>mayor presion de concurrencia o sincronizacion.</li>
+</ul>
+<p>La evolucion a <strong>Opcion C</strong> debe reservarse para cuando exista al menos una de estas condiciones:</p>
+<ul>
+<li>acercamiento al tramo proyectado de <strong>2029-2030</strong>: 61 a 84 clientes y 35,400 a 46,800 recolectores;</li>
+<li>costo total base de referencia acercandose o superando la banda de <strong>USD 2,300/mes</strong> en el escenario base escalado, antes de agregar componentes enterprise;</li>
+<li>SLA contractual superior a la tolerancia natural de una plataforma PaaS simple;</li>
+<li>necesidad de WAF, segmentacion de red y continuidad reforzada;</li>
+<li>presion regulatoria, auditoria o requisitos enterprise;</li>
+<li>costo de un incidente operativo supera claramente el mayor costo base mensual.</li>
+</ul>
+<h2 id="referencias">Referencias</h2>
+<ul>
+<li>Brief base: <a href="../ARQ-PACHAMAMA-AZURE-PROYECCION-COSTOS-20260421/">ARQ-PACHAMAMA-AZURE-PROYECCION-COSTOS-20260421.md</a></li>
+<li>Anexo de costos: <a href="../AZURE-COSTOS-PACHAMAMA-DRIVERS-20260421/">AZURE-COSTOS-PACHAMAMA-DRIVERS-20260421.md</a></li>
+<li>Arquitectura MVP vigente: <a href="../../MVP-ARCHITECTURE/">../MVP-ARCHITECTURE.md</a></li>
+<li>Inventario Azure actual: <a href="../../infrastructure/azure/">../infrastructure/azure.md</a></li>
+<li>Arquitectura Azure full previa: <a href="../ARQ-PACHAMAMA-AZURE-FULL-20260410-v2/">ARQ-PACHAMAMA-AZURE-FULL-20260410-v2.md</a></li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
